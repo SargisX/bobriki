@@ -1,17 +1,55 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useState } from "react";
 
 export default function Navbar() {
-    return (
-        <nav className={styles.navbar}>
-            <div className={styles.logo}>
-                <Link to="/" className={styles.logoText}>MyApp</Link>
-            </div>
-            <ul className={styles.navLinks}>
-                <li><Link to="/" className={styles.link}>Home</Link></li>
-                <li><Link to="/schedule" className={styles.link}>Schedule</Link></li>
-                <li><Link to="/error" className={styles.link}>Error</Link></li>
-            </ul>
-        </nav>
-    );
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  // Toggle menu open/close
+  const toggleMenu = () => setMenuOpen(prev => !prev);
+
+  // Close menu on link click
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <nav className={styles.navbar}>
+      <Link to="/" className={styles.logo}>
+        MyApp
+      </Link>
+      <div className={styles.menuIcon} onClick={toggleMenu}>
+        <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
+        <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
+        <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
+      </div>
+      <ul className={`${styles.navLinks} ${menuOpen ? styles.navOpen : ""}`}>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+            onClick={closeMenu}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/schedule"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+            onClick={closeMenu}
+          >
+            Schedule
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => isActive ? styles.active : undefined}
+            onClick={closeMenu}
+          >
+            Error
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 }
