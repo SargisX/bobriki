@@ -1,0 +1,50 @@
+.errorPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+.errorContainer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.errorCode {
+    font-size: 6rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.errorMessage {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.errorDescription {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.backLink {
+    font-size: 1rem;
+    color: #fff;
+    padding: 10px 20px;
+    background-color: #ff4081;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.backLink:hover {
+    background-color: #ff79b0;
+    text-decoration: none;
+}
