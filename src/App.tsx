@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./Pages/Home/Page";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import { Schedule } from "./Pages/Schedule/Page";
 import { Error404 } from "./components/error404/Page";
 
