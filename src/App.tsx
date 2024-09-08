@@ -9,10 +9,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<Schedule />} />
-        <Route path="/contact" element={<Error404 />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
+
     </>
   );
 }

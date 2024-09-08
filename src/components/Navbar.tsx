@@ -7,7 +7,7 @@ export default function Navbar() {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/schedule">Schedule</Link></li>
-                    <li><Link to="/a">Error</Link></li>
+                    <li><Link to="/error">Error</Link></li>
                 </ul>
             </center>
         </div>
