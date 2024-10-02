@@ -1,10 +1,11 @@
-{
-    "memes":[
-        {
-            "id": 1,
-            "title": "Funny Cat",
-            "url": "https://i.imgflip.com/956v8v.jpg",
-            "tags": ["funny", "cats"]
-        }
-    ]
-}
+[
+    {
+        "id": 1,
+        "title": "Funny Cat",
+        "url": "https://i.imgflip.com/956v8v.jpg",
+        "tags": [
+            "funny",
+            "cats"
+        ]
+    }
+]
