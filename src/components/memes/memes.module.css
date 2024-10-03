@@ -1,0 +1,112 @@
+/* Memes.module.css */
+
+/* Container for the entire memes section */
+.container {
+    font-family: 'Poppins', sans-serif;
+    padding: 40px 20px;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Header style */
+  .title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  
+  /* Meme grid layout */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Each meme card container */
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Meme image styling */
+  .image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Meme info container */
+  .cardContent {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  /* Meme info heading (participants) */
+  .participants {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  /* Additional info about the meme */
+  .info {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .likes {
+    font-weight: 600;
+    color: #ff5a5f;
+  }
+  
+  /* Button for interactive elements (optional) */
+  .button {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+  
+    .cardContent {
+      padding: 15px;
+    }
+  
+    .info {
+      font-size: 0.9rem;
+    }
+  }
+  

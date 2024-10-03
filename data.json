@@ -2,9 +2,9 @@
     "memes": [
         {
             "id": "meme001",
-            "photo": "classmate_meme_1.jpg",
+            "photo": "public/images/Artyuyr,Hobo.jpg",
             "participants": [
-                "Karlos",
+                "Artyuyr",
                 "Hobo"
             ],
             "likes": 4,
@@ -15,9 +15,9 @@
         },
         {
             "id": "meme002",
-            "photo": "classmate_meme_2.jpg",
+            "photo": "public/images/Edick,Davak.jpg",
             "participants": [
-                "Artyuyr",
+                "Lyov",
                 "Suck"
             ],
             "likes": 3,
@@ -28,7 +28,7 @@
         },
         {
             "id": "meme003",
-            "photo": "classmate_meme_3.jpg",
+            "photo": "public/images/Lyov,Suck.jpg",
             "participants": [
                 "Edick",
                 "Davak"
