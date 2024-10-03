@@ -2,7 +2,7 @@
     "memes": [
         {
             "id": "meme001",
-            "photo": "public/images/Artyuyr,Hobo.jpg",
+            "photo": "/images/Artyuyr,Hobo.jpg",
             "participants": [
                 "Artyuyr",
                 "Hobo"
@@ -15,7 +15,7 @@
         },
         {
             "id": "meme002",
-            "photo": "public/images/Edick,Davak.jpg",
+            "photo": "/images/Edick,Davak.jpg",
             "participants": [
                 "Lyov",
                 "Suck"
@@ -28,7 +28,7 @@
         },
         {
             "id": "meme003",
-            "photo": "public/images/Lyov,Suck.jpg",
+            "photo": "/images/Lyov,Suck.jpg",
             "participants": [
                 "Edick",
                 "Davak"
