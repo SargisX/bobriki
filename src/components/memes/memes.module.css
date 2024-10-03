@@ -21,13 +21,31 @@
     font-weight: 600;
   }
   
-  /* Meme grid layout */
+  /* Meme flex container layout */
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: nowrap;  /* Prevent wrapping of items */
     gap: 30px;
     width: 100%;
     max-width: 1200px;
+    justify-content: flex-start; /* Align items to the left */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding-bottom: 10px;
+    scrollbar-width: thin; /* Style scrollbar */
+    -ms-overflow-style: none;  /* Hide scrollbar in Internet Explorer */
+  }
+  
+  .grid::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .grid::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+  
+  .grid::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
   
   /* Each meme card container */
@@ -37,6 +55,10 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    width: 100%;
+    max-width: 350px; /* Card will resize within this max width */
+    margin-bottom: 30px; /* Space between cards */
+    flex-shrink: 0; /* Prevent card from shrinking */
   }
   
   .card:hover {
@@ -49,6 +71,7 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
   }
   
   /* Meme info container */
@@ -74,6 +97,7 @@
     justify-content: space-between;
   }
   
+  /* Likes styling */
   .likes {
     font-weight: 600;
     color: #ff5a5f;
@@ -95,10 +119,21 @@
     background-color: #0056b3;
   }
   
-  /* Responsive design for smaller screens */
+  /* Mobile responsive design */
   @media (max-width: 768px) {
     .title {
       font-size: 2rem;
+    }
+  
+    /* Make sure the grid layout stays horizontal with scroll */
+    .grid {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .card {
+      max-width: 90%; /* Allow cards to take more width on mobile */
+      margin-bottom: 20px;
     }
   
     .cardContent {
@@ -106,6 +141,28 @@
     }
   
     .info {
+      font-size: 0.9rem;
+    }
+  
+    .participants {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.6rem;
+    }
+  
+    .participants {
+      font-size: 1rem;
+    }
+  
+    .info {
+      font-size: 0.85rem;
+    }
+  
+    .button {
       font-size: 0.9rem;
     }
   }
