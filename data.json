@@ -2,7 +2,7 @@
     "memes": [
         {
             "id": "meme001",
-            "photo": "/images/Artyuyr,Hobo.jpg",
+            "photo": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/Artyuyr,Hobo.jpg",
             "participants": [
                 "Artyuyr",
                 "Hobo"
@@ -15,7 +15,7 @@
         },
         {
             "id": "meme002",
-            "photo": "/images/Edick,Davak.jpg",
+            "photo": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/Edick,Davak.jpg",
             "participants": [
                 "Lyov",
                 "Suck"
@@ -28,7 +28,7 @@
         },
         {
             "id": "meme003",
-            "photo": "/images/Lyov,Suck.jpg",
+            "photo": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/Lyov,Suck.jpg",
             "participants": [
                 "Edick",
                 "Davak"
