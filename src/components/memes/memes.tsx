@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllMemes } from "./memes.api";
 import { Meme } from "./types";
-import styles from "./Memes.module.css"; // Import CSS module
+import styles from "./memes.module.css"; // Import CSS module
 
 export const Memes = () => {
   const [memes, setMemes] = useState<Meme[]>([]);
