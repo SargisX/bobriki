@@ -1,15 +1,15 @@
-import { Link, NavLink } from "react-router-dom";
-import styles from "./Navbar.module.css";
-import { useState } from "react";
+import { Link, NavLink } from "react-router-dom"
+import styles from "./Navbar.module.css"
+import { useState } from "react"
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
   // Toggle menu open/close
-  const toggleMenu = () => setMenuOpen(prev => !prev);
+  const toggleMenu = () => setMenuOpen(prev => !prev)
 
   // Close menu on link click
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => setMenuOpen(false)
 
   return (
     <nav className={styles.navbar}>
@@ -31,7 +31,7 @@ export default function Navbar() {
             Home
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             to="/schedule"
             className={({ isActive }) => isActive ? styles.active : undefined}
@@ -39,17 +39,17 @@ export default function Navbar() {
           >
             Schedule
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
-            to="/"
+            to="/services"
             className={({ isActive }) => isActive ? styles.active : undefined}
             onClick={closeMenu}
           >
-            Error
+            Services
           </NavLink>
         </li>
       </ul>
     </nav>
-  );
+  )
 }

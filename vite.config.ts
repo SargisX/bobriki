@@ -7,5 +7,6 @@ export default defineConfig({
   base: "/bobriki/",
   server:{
     host: true,
+    port : 5173,
   }
 })
