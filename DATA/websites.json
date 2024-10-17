@@ -3,7 +3,7 @@
         {
             "id": "101",
             "name": "Portfolio Website Template",
-            "url": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/1.png",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/1.png",
             "description": "A clean and minimalistic portfolio website template designed for creative professionals like artists, designers, or developers. It features a prominent header, easy navigation, and sections for an 'About Me' introduction and a project gallery. Each project is displayed in a card format, allowing visitors to appreciate the work at a glance.",
             "author": "John Doe",
             "technologies": [
@@ -29,7 +29,7 @@
         {
             "id": "102",
             "name": "Blog Website Template",
-            "url": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/2.png",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/2.png",
             "description": "A simple and elegant blog template perfect for writers and bloggers who want to share their thoughts on various topics. It includes an 'About Me' section and a blog post feed where articles are presented in card format for quick browsing.",
             "author": "Jane Smith",
             "technologies": [
@@ -55,7 +55,7 @@
         {
             "id": "103",
             "name": "Business Website Template",
-            "url": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/3.png",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/3.png",
             "description": "A professional business website template ideal for companies seeking to present their services and engage clients. It features a clean layout with sections for business services, contact information, and a professional feel throughout.",
             "author": "Alex Johnson",
             "technologies": [
@@ -81,7 +81,7 @@
         {
             "id": "104",
             "name": "Landing Page Template",
-            "url": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/4.png",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/4.png",
             "description": "A landing page template designed to promote a specific product or service. It includes clear calls to action (CTAs) with a focus on generating leads or driving conversions. The layout is simple yet effective, highlighting key features and benefits of the product.",
             "author": "Emily Carter",
             "technologies": [
@@ -107,7 +107,7 @@
         {
             "id": "105",
             "name": "E-commerce Website Template",
-            "url": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/5.png",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/5.png",
             "description": "An e-commerce website template designed for online stores. It features a product showcase, clean navigation, and a layout optimized for displaying multiple products. Perfect for retail businesses looking to provide a seamless shopping experience to their customers.",
             "author": "Michael Lee",
             "technologies": [

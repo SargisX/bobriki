@@ -6,7 +6,7 @@ export interface TopLevel {
 export interface Website {
     id: string
     name: string
-    url: string
+    image: string
     description: string
     author: string
     technologies: string[]
