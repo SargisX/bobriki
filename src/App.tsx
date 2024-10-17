@@ -8,6 +8,7 @@ import { Services } from "./Pages/Services/Page"
 import { SolutionPage } from "./components/gaussianScheme/Solution"
 import { GaussianSolver } from "./components/gaussianScheme/gaussian_scheme"
 import { Calculator } from "./components/calculator/calculator"
+import { FreeSite } from "./components/freeSites/freeSite"
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/services" element={<Services />} />
         <Route path="/gaussian-scheme" element={<GaussianSolver />} />
         <Route path="/solution/:timestamp" element={<SolutionPage />} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/free-sites" element={<FreeSite />} />
+
         <Route path="*" element={<Error404 />} />
       </Routes>
 

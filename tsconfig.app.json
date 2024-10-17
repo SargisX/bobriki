@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "Servises.ts"]
+  "include": ["src", "DATA/servises.ts"]
 }

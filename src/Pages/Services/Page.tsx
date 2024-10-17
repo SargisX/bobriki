@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './services.module.css'
-import { categories } from '../../../Servises.ts'
+import { categories } from '../../../DATA/servises.ts'
 
 export const Services = () => {
     const [searchTerm, setSearchTerm] = useState('')
