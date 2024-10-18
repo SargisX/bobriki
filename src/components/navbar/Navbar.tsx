@@ -15,7 +15,7 @@ export default function Navbar() {
     <header>
       <nav className={styles.navbar}>
         <Link to="/" className={styles.logo}>
-          MyApp
+          Bobrik
         </Link>
         <div className={styles.menuIcon} onClick={toggleMenu}>
           <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
