@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from './Terminal.module.css'; // Import the CSS module
+import styles from './terminal.module.css'; // Import the CSS module
 
 const Terminal: React.FC = () => {
     const [input, setInput] = useState<string>('');
