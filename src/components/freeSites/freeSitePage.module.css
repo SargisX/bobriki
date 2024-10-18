@@ -1,0 +1,257 @@
+.pageContainer {
+    background: radial-gradient(#f6c8fc, #eea9f7, #b264bd, #9c3fa8, #51035c);
+    padding: 30px;
+    height: 100vh;
+}
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+    min-height: calc(100vw / 3);
+    max-height: calc(100vh - 105px);
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    backdrop-filter: blur(40px);
+    background: rgba(246, 174, 255, 0.2);
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 10px #8517eb, 0 0 20px #520079;
+    gap: 20px;
+}
+
+.imageSection {
+    margin: 10px 40px 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.siteImage {
+    width: 100%;
+    height: auto;
+    max-width: 90%;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+    margin: 0;
+    object-fit: cover;
+}
+
+
+.siteInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+    padding: 5% 10% 10%;
+    backdrop-filter: blur(40px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.siteName {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #5e17eb;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.details {
+    margin-bottom: 15px;
+}
+
+.detailItem {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #5e17eb;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tag {
+    padding: 6px 12px;
+    background-color: #ff3e70;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.tag:hover {
+    background-color: #ff6090;
+    cursor: grabbing;
+}
+
+.button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #5e17eb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #4a0f9e;
+    transform: translateY(-2px);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalImage {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 1rem;
+}
+
+
+@media (max-width: 490px) {
+    .pageContainer {
+        padding-top: 70px;
+        max-height: calc(100vh + 70px);
+    }
+
+    .imageSection {
+        margin: 5px 0;
+    }
+
+    .siteImage {
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+        margin-top: 0;
+        max-height: calc(100vh - 150px);
+    }
+
+    .siteName {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1.05rem;
+    }
+
+    .detailItem {
+        font-size: 1rem;
+    }
+
+    .tag {
+        font-size: .9rem;
+    }
+}
+
+
+@media (min-width: 491px) and (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .siteName {
+        font-size: 2.2rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+    }
+
+    .detailItem {
+        font-size: 1.1rem;
+    }
+
+    .tag {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1040px) {
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .siteName {
+        font-size: 3rem;
+    }
+
+    .description {
+        font-size: 1.5rem;
+    }
+
+    .detailItem {
+        font-size: 1.1rem;
+    }
+
+    .tag {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1041px) {
+
+    .pageContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .siteImage {
+        max-height: 100%;
+    }
+
+    .siteImage:hover {
+        transform: scale(1.02);
+    }
+
+    .siteName {
+        font-size: 2.5rem;
+    }
+
+    .description {
+        font-size: 1.3rem;
+    }
+
+    .detailItem {
+        font-size: 1.2rem;
+    }
+
+    .tag {
+        font-size: 1.2rem;
+    }
+}
