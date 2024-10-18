@@ -14,7 +14,7 @@ import SignIn from "./Pages/SignIn/Page"
 import SignUp from "./Pages/SignUp/Page"
 import { useEffect, useState } from "react"
 import { isSessionValid, getUserRole } from "./components/auth/authUtils"
-import { AdminComponent } from "./components/auth/adminComp"
+import { Admin } from "./Pages/Admin/Page.tsx"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -55,7 +55,7 @@ function App() {
           <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <SignUp />} />
           <Route path="/signin" element={isLoggedIn ? <Navigate to="/" /> : <SignIn setIsLoggedIn={setIsLoggedIn} setRole={setRole} />} />
 
-          {role === 'admin' && <Route path="/admin" element={<AdminComponent />} />}
+          {role === 'admin' && <Route path="/admin" element={<Admin />} />}
 
           <Route path="*" element={<Error404 />} />
         </Routes>

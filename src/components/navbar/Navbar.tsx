@@ -12,7 +12,6 @@ interface NavbarProps {
 
 export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
-  const navigate = useNavigate()
 
   const toggleMenu = () => setMenuOpen((prev) => !prev)
   const closeMenu = () => setMenuOpen(false)
@@ -22,7 +21,6 @@ export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: Nav
     setIsLoggedIn(false)
     setRole(null)
     closeMenu()
-    navigate("/signin")
   }
 
   return (
@@ -61,7 +59,7 @@ export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: Nav
           )}
           {isLoggedIn && (
             <li>
-              <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+              <Link to={"/signin"} onClick={handleLogout} className={styles.logoutButton}>Logout</Link>
             </li>
           )}
         </ul>

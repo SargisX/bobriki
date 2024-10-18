@@ -5,18 +5,18 @@ const SESSION_KEY = "user_session"
 const USERS_KEY = "users"
 
 export const saveLoginSession = (user: SignUpUser) => {
-    const { username, password } = user 
+    const { username, password } = user     
     const userData = {
         id: username === 'SargisX' ? '13795' : uuidv4(),
         username,
         password,
         role: username === "SargisX" ? "admin" : "user"
-    }   
+    }       
 
-    let users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]") 
+    let users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]")     
 
     if (!users.some((u: SignUpUser) => u.username === username)) {
-        users.push(userData)    
+        users.push(userData)        
         localStorage.setItem(USERS_KEY, JSON.stringify(users))
     }
 
