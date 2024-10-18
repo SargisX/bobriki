@@ -2,7 +2,7 @@ import { useEffect, useState, TouchEvent } from "react"
 import { useParams } from "react-router-dom"
 import { Website } from "./types"
 import { getSiteById } from "./freeSite.api"
-import styles from "./FreeSitePage.module.css"
+import styles from "./freeSitePage.module.css"
 
 export const FreeSitePage = () => {
     const { siteid } = useParams<{ siteid: string }>()
