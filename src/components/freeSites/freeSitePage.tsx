@@ -12,7 +12,7 @@ export const FreeSitePage = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 })
     const [initialDistance, setInitialDistance] = useState<number | null>(null)
     const [initialTouchPos, setInitialTouchPos] = useState<{ x: number, y: number } | null>(null)
-    const downloadPhoto = `https://raw.githubusercontent.com/SargisX/bobriki/main/public/files/websites/${Number(siteid)-100}.zip`
+    const downloadPhoto = `https://raw.githubusercontent.com/SargisX/bobriki/main/public/files/websites/${Number(siteid) - 100}.zip`
 
     useEffect(() => {
         if (siteid) {
@@ -125,11 +125,10 @@ export const FreeSitePage = () => {
                         ))}
                     </div>
 
-                    <a href={downloadPhoto} download={`${Number(siteid)-100}.zip`}><button className={styles.button}>Download now</button></a>
+                    <a href={downloadPhoto} download={`${Number(siteid) - 100}.zip`}><button className={styles.button}>Download now</button></a>
                 </div>
             </div>
 
-            {/* Modal for larger image with zooming and panning feature */}
             {isModalOpen && (
                 <div className={styles.modal} onClick={toggleModal}>
                     <img

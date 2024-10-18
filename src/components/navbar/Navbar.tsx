@@ -1,22 +1,34 @@
-import { Link, NavLink } from "react-router-dom"
-import styles from "./Navbar.module.css"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useState } from "react"
+import styles from "./Navbar.module.css"
+import { clearLoginSession } from "../auth/authUtils"
 
-export default function Navbar() {
+interface NavbarProps {
+  isLoggedIn: boolean
+  role: string | null
+  setIsLoggedIn: (value: boolean) => void
+  setRole: (role: string | null) => void
+}
+
+export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const navigate = useNavigate()
 
-  // Toggle menu open/close
-  const toggleMenu = () => setMenuOpen(prev => !prev)
-
-  // Close menu on link click
+  const toggleMenu = () => setMenuOpen((prev) => !prev)
   const closeMenu = () => setMenuOpen(false)
+
+  const handleLogout = () => {
+    clearLoginSession()
+    setIsLoggedIn(false)
+    setRole(null)
+    closeMenu()
+    navigate("/signin")
+  }
 
   return (
     <header>
       <nav className={styles.navbar}>
-        <Link to="/" className={styles.logo}>
-          Bobrik
-        </Link>
+        <Link to="/" className={styles.logo}>Bobrik</Link>
         <div className={styles.menuIcon} onClick={toggleMenu}>
           <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
           <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>
@@ -24,32 +36,34 @@ export default function Navbar() {
         </div>
         <ul className={`${styles.navLinks} ${menuOpen ? styles.navOpen : ""}`}>
           <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) => isActive ? styles.active : undefined}
-              onClick={closeMenu}
-            >
-              Home
-            </NavLink>
+            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Home</NavLink>
           </li>
-          {/* <li>
-            <NavLink
-              to="/schedule"
-              className={({ isActive }) => isActive ? styles.active : undefined}
-              onClick={closeMenu}
-            >
-              Schedule
-            </NavLink>
-          </li> */}
-          <li>
-            <NavLink
-              to="/services"
-              className={({ isActive }) => isActive ? styles.active : undefined}
-              onClick={closeMenu}
-            >
-              Services
-            </NavLink>
-          </li>
+          {isLoggedIn && <>
+            <li>
+              <NavLink to="/services" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Services</NavLink>
+            </li>
+          </>
+          }
+          {isLoggedIn && role === "admin" && (
+            <li>
+              <NavLink to="/admin" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Admin Panel</NavLink>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <>
+              <li>
+                <NavLink to="/signup" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Sign Up</NavLink>
+              </li>
+              <li>
+                <NavLink to="/signin" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Sign In</NavLink>
+              </li>
+            </>
+          )}
+          {isLoggedIn && (
+            <li>
+              <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

@@ -1,5 +1,5 @@
 .app-content {
-    padding-top: 5rem; /* Adjust this value to match your navbar height */
+    padding-top: 5rem; 
     box-sizing: border-box;
-    min-height: calc(100vh - 5rem); /* Ensures content fills the viewport */
+    min-height: calc(100vh - 5rem); 
 }

@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Ensure content is aligned at the top */
+    justify-content: flex-start;
     padding: 2rem;
     background: linear-gradient(to bottom right, #f1f1f1, #d9d9d9);
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     max-width: 100%;
-    overflow-y: auto; /* Allow vertical scrolling */
-    max-height: calc(93vh - 4.5rem); /* Ensure container takes at least full viewport height */
+    overflow-y: auto;
+    max-height: calc(93vh - 4.5rem);
 }
 
 .title {
@@ -49,7 +49,7 @@
     border-collapse: collapse;
     margin-bottom: 1rem;
     table-layout: auto;
-    min-width: 300px; /* Ensures table doesn't shrink too small */
+    min-width: 300px;
 }
 
 .table td {
@@ -62,14 +62,14 @@
 }
 
 .table tr:nth-child(even) td {
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9;
 }
 
 .table tr:hover td {
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
 }
 
-/* Media Queries for Responsiveness */
+
 @media (max-width: 768px) {
     .title {
         font-size: 2rem;

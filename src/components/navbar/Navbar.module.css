@@ -101,6 +101,21 @@
   box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
+.logoutButton {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #1e40af;
+}
+
+
 
 @media (max-width: 768px) {
   .menuIcon {
