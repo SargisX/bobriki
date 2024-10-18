@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { useState } from "react"
 import styles from "./Navbar.module.css"
 import { clearLoginSession } from "../auth/authUtils"
