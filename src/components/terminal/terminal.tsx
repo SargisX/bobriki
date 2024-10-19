@@ -154,12 +154,6 @@ const Terminal: React.FC = () => {
                         ]);
                     }
                     break;
-                case '':
-                    setCommands((prev) => [
-                        ...prev,
-                        { text: `Invalid user property: It can't be empty`, isError: true },
-                    ]);
-                    break;
                 default:
                     setCommands((prev) => [
                         ...prev,
