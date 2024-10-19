@@ -2,7 +2,6 @@ import { useState } from "react"
 import { saveLoginSession } from "../../components/auth/authUtils"
 import styles from './signUp.module.css'
 import { useNavigate } from "react-router-dom"
-import triggerWorkflow from "../../components/auth/githubWorkflow"
 
 
 const SignUp: React.FC = () => {
@@ -12,47 +11,43 @@ const SignUp: React.FC = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const navigate = useNavigate()
 
-    const handleSignUp = async (e: React.FormEvent) => {
-        e.preventDefault();
-    
-        if (isSubmitting) return;
-    
-        setIsSubmitting(true);
-    
+    const handleSignUp = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (isSubmitting) return
+
+        setIsSubmitting(true)
+
         if (!username || !password) {
-            setError("Please fill all fields.");
-            setIsSubmitting(false);
-            return;
+            setError("Please fill all fields.")
+            setIsSubmitting(false)
+            return
         }
-    
-        const users = JSON.parse(localStorage.getItem("users") || "[]");
-    
+
+        const users = JSON.parse(localStorage.getItem("users") || "[]")
+
+
         if (users.some((user: { username: string }) => user.username === username)) {
-            setError("Username already exists. Please choose another.");
-            setIsSubmitting(false);
-            return;
+            setError("Username already exists. Please choose another.")
+            setIsSubmitting(false)
+            return
         }
-    
-        const role = username === "SargisX" ? "admin" : "user";
-        const id = role === 'admin' ? '13795' : String(Date.now());
+
+        const role = username === "SargisX" ? "admin" : "user"
+        const id = role === 'admin' ? '13795' : String(Date.now())
         const userData = {
             id,
             username,
             password,
             role,
-        };
-    
-        users.push(userData);
-        localStorage.setItem("users", JSON.stringify(users));
-        saveLoginSession(userData);
-    
-        // Call the triggerWorkflow function here
-        await triggerWorkflow(); // Make sure to handle this if you want to show a loading state or handle errors
-    
-        alert(`Signed up as ${username} with role: ${role}`);
-        navigate("/signin");
+        }
+
+        users.push(userData)
+        localStorage.setItem("users", JSON.stringify(users))
+        saveLoginSession(userData)
+        alert(`Signed up as ${username} with role: ${role}`)
+        navigate("/signin")
     }
-    
 
     return (
         <form className={styles.form} onSubmit={handleSignUp}>
