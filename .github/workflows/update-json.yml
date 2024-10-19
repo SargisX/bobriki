@@ -1,0 +1,34 @@
+name: Update JSON
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the version of Node.js
+
+      - name: Install dependencies
+        run: npm install  # Assuming you have a package.json in your repo
+
+      - name: Update JSON file
+        run: |
+          echo "${{ secrets.USER_DATA_JSON_FILE }}" > users.json  # Write the secret to a file
+          # You can modify users.json here if needed
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "action@github.com"
+          git add users.json
+          git commit -m "Update users.json"
+          git push  # This will push the changes back to the repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub Actions
