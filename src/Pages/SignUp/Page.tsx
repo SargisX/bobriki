@@ -3,6 +3,7 @@ import { saveLoginSession } from "../../components/auth/authUtils"
 import styles from './signUp.module.css'
 import { useNavigate } from "react-router-dom"
 
+
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
