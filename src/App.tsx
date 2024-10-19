@@ -15,6 +15,7 @@ import SignUp from "./Pages/SignUp/Page"
 import { useEffect, useState } from "react"
 import { isSessionValid, getUserRole } from "./components/auth/authUtils"
 import { Admin } from "./Pages/Admin/Page.tsx"
+import UsersList from "./components/Users/userList.tsx"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/calculator" element={isLoggedIn ? <Calculator /> : <Navigate to="/signin" />} />
                 <Route path="/free-sites" element={isLoggedIn ? <FreeSite /> : <Navigate to="/signin" />} />
                 <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
+                <Route path="/contact" element={isLoggedIn ? <UsersList /> : <Navigate to="/signin" />} />
               </>
             )
           }

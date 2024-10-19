@@ -1,5 +1,4 @@
 import { SignUpUser, User } from "./types";
-import { v4 as uuidv4 } from 'uuid';
 
 const SESSION_KEY = "user_session";
 const USERS_KEY = "users";
@@ -8,7 +7,7 @@ export const saveLoginSession = (user: SignUpUser) => {
     const { username, password } = user;
 
     const userData = {
-        id: username === 'SargisX' ? '13795' : uuidv4(),
+        id: username === 'SargisX' ? '13795' : String(Date.now()),
         username,
         password, // Consider hashing this before storing
         role: username === "SargisX" ? "admin" : "user"

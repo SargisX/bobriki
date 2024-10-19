@@ -17,6 +17,10 @@
     margin-top: 10px;
 }
 
+.error {
+    color: red !important;
+}
+
 .input {
     flex: 1;
     background: transparent;
