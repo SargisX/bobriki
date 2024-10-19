@@ -2,7 +2,6 @@ import { useState } from "react"
 import { saveLoginSession } from "../../components/auth/authUtils"
 import styles from './signUp.module.css'
 import { useNavigate } from "react-router-dom"
-import { v4 as uuidv4 } from 'uuid'
 
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("")
@@ -34,8 +33,7 @@ const SignUp: React.FC = () => {
         }
 
         const role = username === "SargisX" ? "admin" : "user"
-        const id = role === 'admin' ? '13795' : uuidv4()
-
+        const id = role === 'admin' ? '13795' : String(Date.now())
         const userData = {
             id,
             username,
