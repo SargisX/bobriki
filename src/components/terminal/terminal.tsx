@@ -102,7 +102,7 @@ const Terminal: React.FC = () => {
     };
 
     const handleCommand = (command: string) => {
-        const [cmd, property, action] = command.split('.');
+        const [cmd, property, action] = command.toLowerCase().split('.');
 
         if (cmd === 'user') {
             const user = getUserFromLocalStorage();
