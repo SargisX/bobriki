@@ -8,10 +8,6 @@ async function triggerWorkflow() {
       url,
       { ref: 'main' }, // Specify the branch where the workflow should run
       {
-        headers: {
-          Authorization: `token ${process.env.GITHUB_TOKEN}`,
-          Accept: 'application/vnd.github.v3+json',
-        },
       }
     );
 
