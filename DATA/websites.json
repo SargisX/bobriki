@@ -24,7 +24,9 @@
                 "showcase",
                 "projects",
                 "professional"
-            ]
+            ],
+            "download":0,
+            "rate":0
         },
         {
             "id": "102",
@@ -50,7 +52,9 @@
                 "articles",
                 "personal blog",
                 "media"
-            ]
+            ],
+            "download":0,
+            "rate":0
         },
         {
             "id": "103",
@@ -76,7 +80,9 @@
                 "company",
                 "professional",
                 "marketing"
-            ]
+            ],
+            "download":0,
+            "rate":0
         },
         {
             "id": "104",
@@ -102,7 +108,9 @@
                 "marketing",
                 "conversion",
                 "sales"
-            ]
+            ],
+            "download":0,
+            "rate":0
         },
         {
             "id": "105",
@@ -128,7 +136,9 @@
                 "products",
                 "sales",
                 "retail"
-            ]
+            ],
+            "download":0,
+            "rate":0
         }
     ]
 }

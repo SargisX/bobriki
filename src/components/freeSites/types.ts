@@ -14,6 +14,8 @@ export interface Website {
     platform: string[]
     dateAdded: string
     tags: string[]
+    download:number
+    rate:number
 }
 
 export enum Status {

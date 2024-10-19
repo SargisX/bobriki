@@ -1,37 +1,36 @@
-/* Terminal.module.css */
 .terminal {
-    background: #1d1f21; /* Dark background */
-    color: #c5c8c6; /* Default text color */
+    background: #1d1f21;
+    color: #c5c8c6;
     padding: 20px;
-    height: calc(100vh - 150px); /* Default height */
-    width: 100%; /* Full width of the container */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
-    overflow-y: auto; /* Allow scrolling */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font */
-    resize: vertical; /* Allow vertical resizing */
+    height: calc(100vh - 150px);
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    resize: vertical;
 }
 
 .inputContainer {
     display: flex;
     align-items: center;
-    margin-top: 10px; /* Space above input */
+    margin-top: 10px;
 }
 
 .input {
-    flex: 1; /* Take up remaining space */
+    flex: 1;
     background: transparent;
     border: none;
-    color: #00ff00; /* Green text color */
+    color: #00ff00;
     outline: none;
-    font-size: 16px; /* Font size for input */
+    font-size: 16px;
 }
 
 .command {
-    margin: 0; /* Remove margin */
-    color: #00ff00; /* Green text color for commands */
+    margin: 0;
+    color: #00ff00;
 }
 
 .prompt {
-    color: #00ff00; /* Green for the prompt */
+    color: #00ff00;
 }

@@ -1,80 +1,98 @@
 .bg {
     display: grid;
-    grid-template-rows: 1fr; /* Full screen layout */
-    width: 100vw; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    background: linear-gradient(to right, #4a90e2, #50e3c2); /* Gradient background */
-    margin: 0; /* Remove any extra margin */
+    grid-template-rows: 1fr;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #4a90e2, #50e3c2);
+    margin: 0;
 }
 
 .adminContainer {
-    display: grid; /* Use grid layout */
-    grid-template-columns: 1fr 4fr; /* Sidebar and content layout */
-    height: 100%; /* Full height of the viewport */
-    width: 100%; /* Full width */
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100%;
+    width: 100%;
 }
 
 .sidebar {
-    background-color: rgba(43, 43, 43, 0.9); /* Slightly transparent dark background */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Shadow for visual separation */
-    color: #fff; /* White text for visibility */
-    padding: 20px; /* Add padding for sidebar content */
+    background-color: rgba(43, 43, 43, 0.9);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 20px;
     display: grid;
-    grid-template-rows: auto 1fr; /* Header + scrollable content */
-    overflow-y: auto; /* Allow scrolling only if needed */
-    max-height: 100vh; /* Ensure it doesn't overflow the viewport */
-    gap: 10px; /* Space between elements */
+    grid-template-rows: auto 1fr;
+    overflow-y: auto;
+    max-height: 100vh;
+    gap: 10px;
 }
 
 .content {
-    background-color: #fff; /* Light background */
-    overflow-y: auto; /* Allow scrolling if needed */
+    background-color: #fff;
+    overflow-y: auto;
     padding: 20px;
-    height: 100%; /* Fill the remaining height */
-}
-
-/* Responsive Styles */
-@media (max-width: 490px) {
-    .adminContainer {
-        grid-template-columns: 1fr; /* Stack sidebar and content */
-    }
-
-    .sidebar {
-        padding: 10px; /* Adjust padding */
-    }
-
-    .content {
-        padding: 15px; /* Adjust padding */
-    }
-}
-
-@media (min-width: 491px) and (max-width: 768px) {
-    .adminContainer {
-        grid-template-columns: 1fr 2fr; /* Adjust column sizes for medium screens */
-    }
-}
-
-@media (min-width: 769px) {
-    .adminContainer {
-        grid-template-columns: 1fr 4fr; /* Default desktop layout */
-        padding-top: 25px;
-    }
+    height: 100%;
 }
 
 .toggleButton {
-    padding: 10px 15px; /* Padding for button */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #00ff00; /* Green background */
-    color: #000; /* Black text */
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #00ff00;
+    color: #000;
     transition: background-color 0.3s ease;
-    width: 100%; /* Full width */
-    height: 5%;
-    margin-top: 10px; /* Add space above the button */
+    width: 100%;
+    margin-top: 10px;
 }
 
+
 .toggleButton:hover {
-    background-color: #00cc00; /* Darker green on hover */
+    background-color: #00cc00;
+}
+
+
+@media (max-width: 490px) {
+    .adminContainer {
+        display: grid;
+        grid-template-rows: 1fr 2fr;
+        grid-template-columns: 1fr;
+        height: 100vh;
+    }
+
+    .toggleButton {
+        height: 40px;
+    }
+
+    .sidebar {
+        padding: 15px;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .content {
+        padding: 15px;
+        height: auto;
+        overflow-y: auto;
+    }
+}
+
+
+
+@media (min-width: 491px) and (max-width: 768px) {
+    .adminContainer {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+
+@media (min-width: 769px) {
+    .adminContainer {
+        grid-template-columns: 1fr 4fr;
+        padding-top: 25px;
+    }
+
+    .toggleButton {
+        height: 50px;
+    }
 }
