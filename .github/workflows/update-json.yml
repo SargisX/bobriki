@@ -21,7 +21,8 @@ jobs:
       - name: Update JSON file
         run: |
           echo "${{ secrets.USER_DATA_JSON_FILE }}" > users.json  # Write the secret to a file
-          # You can modify users.json here if needed
+          # Here you can modify users.json if needed
+          # For example, you can append a new user to the JSON array
 
       - name: Commit changes
         run: |
@@ -30,5 +31,3 @@ jobs:
           git add users.json
           git commit -m "Update users.json"
           git push  # This will push the changes back to the repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Automatically provided by GitHub Actions
