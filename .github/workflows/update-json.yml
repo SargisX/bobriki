@@ -21,8 +21,7 @@ jobs:
       - name: Update JSON file
         run: |
           echo "${{ secrets.USER_DATA_JSON_FILE }}" > users.json  # Write the secret to a file
-          # Here you can modify users.json if needed
-          # For example, you can append a new user to the JSON array
+          # You can modify users.json here if needed
 
       - name: Commit changes
         run: |
