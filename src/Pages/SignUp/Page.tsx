@@ -42,7 +42,7 @@ const SignUp: React.FC = () => {
             const newUser = {
                 username,
                 password,
-                role: username === "SargisX" && password === "sx" ? "admin" : "user",
+                role: username === "@ADMIN_SMaster" && password === "Adm!nC0ntr0l#2024" ? "admin" : "user",
             };
             await createUser(newUser);
 

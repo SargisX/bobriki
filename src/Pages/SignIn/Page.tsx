@@ -26,7 +26,7 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
                 return;
             }
 
-            const role = user.username === "SargisX" ? "admin" : user.role;
+            const role = user.username === "@ADMIN_SMaster" ? "admin" : user.role;
             setIsLoggedIn(true);
             setRole(role);
             saveLoginSession(user);
