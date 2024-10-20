@@ -45,13 +45,13 @@ export const UserList = () => {
                         </div>
                     )}
                     <div className={styles.userList}>
-                        {filteredUsers.map((user, index) => (
+                        {filteredUsers.map((user) => (
                             user.role !== 'admin' && (
                                 <div key={user.id} className={styles.card}>
                                     <h3 className={styles.username}>{user.username}</h3>
                                     <p className={styles.password}>Password: {'*'.repeat(8)}</p>
                                     <p className={styles.role}>Role: {user.role}</p>
-                                    <span className={styles.index}>#{index}</span>
+                                    <span className={styles.index}>#{Number(user.id) - 1}</span>
                                 </div>
                             )
                         ))}
