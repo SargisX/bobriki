@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Website, Status } from "./types";
-import { getAllSites } from "./freeSite.api";
-import styles from "./freeSites.module.css";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Website, Status } from "./types"
+import { getAllSites } from "./freeSite.api"
+import styles from "./freeSite.module.css"
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa"
 
 export const FreeSite = () => {
-    const [sites, setSites] = useState<Website[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [searchQuery, setSearchQuery] = useState<string>("");
-    const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const [sites, setSites] = useState<Website[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
+    const [searchQuery, setSearchQuery] = useState<string>("")
+    const [isFilterVisible, setIsFilterVisible] = useState(false)
     const [filters, setFilters] = useState({
         category: "All",
         author: "",
@@ -19,52 +19,52 @@ export const FreeSite = () => {
         status: "",
         technology: "",
         popularity: "",
-    });
-    const [sortOption, setSortOption] = useState<string>("");
-    const [filteredSites, setFilteredSites] = useState<Website[]>([]);
-    const navigate = useNavigate();
-    const loadingGif = "https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/loader.gif";
+    })
+    const [sortOption, setSortOption] = useState<string>("")
+    const [filteredSites, setFilteredSites] = useState<Website[]>([])
+    const navigate = useNavigate()
+    const loadingGif = "https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/loader.gif"
 
     useEffect(() => {
         const fetchSites = async () => {
-            setLoading(true);
+            setLoading(true)
             try {
-                const res = await getAllSites();
-                setSites(res);
-                setFilteredSites(res); // Initialize filtered sites
+                const res = await getAllSites()
+                setSites(res)
+                setFilteredSites(res)
             } catch (error) {
-                console.error("Error fetching sites:", error);
+                console.error("Error fetching sites:", error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
+        }
 
-        fetchSites();
-    }, []);
+        fetchSites()
+    }, [])
 
     const handleClick = (id: string) => {
-        navigate(`/free-sites/${id}`);
-    };
+        navigate(`/free-sites/${id}`)
+    }
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(event.target.value);
-    };
+        setSearchQuery(event.target.value)
+    }
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         setFilters((prev) => ({
             ...prev,
             [name]: value,
-        }));
-    };
+        }))
+    }
 
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSortOption(event.target.value);
-    };
+        setSortOption(event.target.value)
+    }
 
     const toggleFilterVisibility = () => {
-        setIsFilterVisible(!isFilterVisible);
-    };
+        setIsFilterVisible(!isFilterVisible)
+    }
 
     useEffect(() => {
         const applyFilters = () => {
@@ -75,44 +75,44 @@ export const FreeSite = () => {
                 const matchesAuthor = filters.author ? site.author.toLowerCase() === filters.author.toLowerCase() : true;
                 const matchesRating = filters.rating ? site.rate === parseInt(filters.rating) : true;
                 const matchesDownloads = filters.downloadsCount ? site.download >= parseInt(filters.downloadsCount) : true;
-        
+    
+                // Date matching logic
                 const dateAdded = new Date(site.dateAdded);
                 const now = new Date();
                 const isThisMonth = dateAdded.getFullYear() === now.getFullYear() && dateAdded.getMonth() === now.getMonth();
                 const isThisWeek = Math.floor((now.getTime() - dateAdded.getTime()) / (1000 * 60 * 60 * 24)) < 7;
-        
+    
                 const matchesDateAdded = (filters.dateAdded === "thisMonth" && isThisMonth) ||
                     (filters.dateAdded === "thisWeek" && isThisWeek) ||
                     (filters.dateAdded === "");
-        
+    
                 return matchesSearch && matchesCategory && matchesAuthor && matchesRating && matchesDownloads && matchesDateAdded;
             });
-        
-            // Apply sorting based on the selected sort option
+
+
             currentFilteredSites.sort((a: Website, b: Website) => {
                 const dateA = new Date(a.dateAdded);
                 const dateB = new Date(b.dateAdded);
-        
+    
                 if (sortOption === "newest") {
-                    return dateB.getTime() - dateA.getTime(); // Sort newest first
+                    return dateB.getTime() - dateA.getTime();
                 } else if (sortOption === "oldest") {
-                    return dateA.getTime() - dateB.getTime(); // Sort oldest first
+                    return dateA.getTime() - dateB.getTime();
                 } else if (sortOption === "mostPopular") {
-                    return b.download - a.download; // Sort by downloads, ensure the property name is correct
+                    return b.download - a.download; // Ensure 'download' exists
                 }
-                return 0; // Maintain original order if no sorting option is selected
+                return 0;
             });
-        
-            setFilteredSites(currentFilteredSites); // Update filtered sites state
-        };
-        
 
-        applyFilters(); // Apply filters on search query, filters, and sort option changes
+            setFilteredSites(currentFilteredSites);
+        };
+    
+        applyFilters();
     }, [searchQuery, filters, sortOption, sites]);
 
     const resetFilters = () => {
         setFilters({
-            category: "All",  // Change to default if applicable
+            category: "All",
             author: "",
             rating: "",
             downloadsCount: "",
@@ -120,11 +120,11 @@ export const FreeSite = () => {
             status: "",
             technology: "",
             popularity: "",
-        });
-        setSortOption(""); // Reset sort option as well
-        setIsFilterVisible(false); // Close the filter sidebar
-        setFilteredSites(sites); // Reset filtered sites to all sites
-    };
+        })
+        setSortOption("")
+        setIsFilterVisible(false)
+        setFilteredSites(sites)
+    }
 
 
     return (
@@ -132,6 +132,14 @@ export const FreeSite = () => {
             <h2 className={styles.heading}>Free Sites</h2>
 
             <div className={styles.searchContainer}>
+                <button
+                    className={styles.filterButton}
+                    onClick={toggleFilterVisibility}
+                    aria-expanded={isFilterVisible}
+                >
+                    Filter
+                </button>
+
                 <input
                     type="text"
                     placeholder="Search sites..."
@@ -140,11 +148,10 @@ export const FreeSite = () => {
                     className={styles.searchInput}
                 />
 
-                <button className={styles.filterButton} onClick={toggleFilterVisibility}>Filter</button>
 
-                {/* Filter Sidebar */}
+
                 <div className={styles.filterSidebar} style={{ display: isFilterVisible ? 'block' : 'none' }}>
-                    {/* Existing filter fields */}
+
                     <select name="category" value={filters.category} onChange={handleFilterChange}>
                         <option value="All">All</option>
                         <option value="Website templates">Website templates</option>
@@ -170,21 +177,22 @@ export const FreeSite = () => {
                     <input
                         type="number"
                         name="downloadsCount"
-                        placeholder="Downloads Count"
+                        placeholder="Min Downloads Count"
                         value={filters.downloadsCount}
                         min={0}
                         step={1}
                         onChange={handleFilterChange}
                     />
 
-                    {/* New Date Added Filter */}
+
+
                     <select name="dateAdded" value={filters.dateAdded} onChange={handleFilterChange}>
                         <option value="" disabled>Select Date Added</option>
                         <option value="thisMonth">This Month</option>
                         <option value="thisWeek">This Week</option>
                     </select>
 
-                    {/* Sort Options */}
+
                     <select name="sortOption" value={sortOption} onChange={handleSortChange}>
                         <option value="" disabled>Sort By</option>
                         <option value="newest">Newest</option>
@@ -192,7 +200,8 @@ export const FreeSite = () => {
                         <option value="mostPopular">Most Popular</option>
                     </select>
 
-                    <button onClick={resetFilters}>Reset Filters</button>
+                    <button onClick={resetFilters} className={styles.resetFilter}>Reset Filters</button>
+                    <button onClick={()=>setIsFilterVisible(false)} className={styles.closeFilter}>Close</button>
                 </div>
             </div>
 
@@ -227,5 +236,5 @@ export const FreeSite = () => {
                 </div>
             )}
         </div>
-    );
-};
+    )
+}

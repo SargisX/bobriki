@@ -50,7 +50,7 @@
 
 .calculatorDisplayValue {
     color: #ffffff;
-    font-size: calc(36px + (100vw - 480px) * 0.05);
+    font-size: clamp(40px, calc(36px + (100vw - 1080px) * 0.03), 48px);
     padding-right: 10px;
     min-width: 100%;
 }
@@ -98,3 +98,4 @@
 .calculatorButton:active {
     background-color: #555;
 }
+

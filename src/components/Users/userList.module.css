@@ -1,0 +1,68 @@
+.userListContainer {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.userList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.role {
+  font-size: 16px;
+  color: #666;
+}
+
+.index {
+  background-color: #e7e7e7;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.password {
+  font-size: 16px;
+  color: #999;
+}

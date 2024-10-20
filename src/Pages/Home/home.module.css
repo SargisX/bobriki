@@ -48,8 +48,13 @@
   flex-direction: column;
   justify-content: space-between;
   opacity: 0;
-  text-decoration: none;
+  color: rgba(153, 100, 167, 0.897);
   transform: translateX(-50px);
+}
+
+.link{
+  text-decoration: none;
+
 }
 
 .card.visible {

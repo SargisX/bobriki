@@ -1,117 +1,185 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from './terminal.module.css';
+import React, { useState, useEffect, useRef } from 'react'
+import styles from './terminal.module.css'
+import { deleteUser, getAllUsers, getUserById, updateUser } from '../Users/users.api'
+import { useNavigate } from 'react-router-dom'
+import { clearSession } from '../auth/authUtils'
 
 interface User {
-    id: string;
-    username: string;
-    password: string;
-    role: string;
+    id: string
+    username: string
+    password: string
+    role: string
 }
 
 interface Command {
-    text: string;
-    isError?: boolean;
+    text: string
+    isError?: boolean
 }
 
 const Terminal: React.FC = () => {
-    const [input, setInput] = useState<string>('');
-    const [commands, setCommands] = useState<Command[]>([]);
-    const [editingProperty, setEditingProperty] = useState<string | null>(null);
-    const [passwordCheck, setPasswordCheck] = useState<boolean>(false);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [input, setInput] = useState<string>('')
+    const [commands, setCommands] = useState<Command[]>([])
+    const [editingProperty, setEditingProperty] = useState<string | null>(null)
+    const [passwordCheck, setPasswordCheck] = useState<boolean>(false)
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const navigate = useNavigate()
 
-    const getUserFromLocalStorage = (): User | null => {
-        const usersData = localStorage.getItem('users');
-        const users: User[] = usersData ? JSON.parse(usersData) : [];
-        const sessionData = sessionStorage.getItem('user_session');
-        const currentUserId = sessionData ? JSON.parse(sessionData).userId : null;
-        return users.find((user) => user.id === currentUserId) || null;
-    };
 
-    const saveUserToLocalStorage = (updatedUser: User) => {
-        const usersData = localStorage.getItem('users');
-        const users: User[] = usersData ? JSON.parse(usersData) : [];
+    const getCurrentUser = async (): Promise<User | null> => {
+        const sessionData = sessionStorage.getItem('user_session')
+        const currentUserId = sessionData ? JSON.parse(sessionData).userId : null
 
-        const updatedUsers = users.map((user) =>
-            user.id === updatedUser.id ? updatedUser : user
-        );
+        if (!currentUserId) return null
 
-        localStorage.setItem('users', JSON.stringify(updatedUsers));
-    };
+        return await getUserById(currentUserId)
+    }
+
+
+
+    const handleCleanUsers = async () => {
+        try {
+            const users = await getAllUsers()
+            const nonAdminUsers = users.filter(user => user.role !== 'admin')
+
+            if (nonAdminUsers.length === 0) {
+                setCommands((prev) => [
+                    ...prev,
+                    { text: 'No non-admin users found to delete.' },
+                ])
+                return
+            }
+
+
+            await Promise.all(nonAdminUsers.map(user => deleteUser(user.id)))
+
+            setCommands((prev) => [
+                ...prev,
+                { text: 'All non-admin users deleted successfully from the API.' },
+            ])
+
+
+            const currentUser = await getCurrentUser()
+            
+            
+            if (currentUser && currentUser.role !== 'admin') {
+                clearSession()
+                navigate('/')
+            }
+        } catch (error) {
+            setCommands((prev) => [
+                ...prev,
+                { text: 'Error deleting users.', isError: true },
+            ])
+        }
+    }
+
+
+    const handleCleanAllUsers = async () => {
+        try {
+            const users = await getAllUsers()
+
+            if (users.length === 0) {
+                setCommands((prev) => [
+                    ...prev,
+                    { text: 'No users found to delete.' },
+                ])
+                return
+            }
+
+            await Promise.all(users.map(user => deleteUser(user.id)))
+
+            setCommands((prev) => [
+                ...prev,
+                { text: 'All users deleted successfully from the API.' },
+            ])
+
+            clearSession()
+            navigate('/')
+        } catch (error) {
+            setCommands((prev) => [
+                ...prev,
+                { text: 'Error deleting all users.', isError: true },
+            ])
+        }
+    }
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInput(event.target.value);
-    };
+        setInput(event.target.value)
+    }
+
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            event.preventDefault();
+            event.preventDefault()
             if (editingProperty) {
-                handleEditInput();
+                handleEditInput()
             } else if (input.trim()) {
-                setCommands((prev) => [...prev, { text: `> ${input}` }]);
-                handleCommand(input.trim());
-                setInput('');
+                setCommands((prev) => [...prev, { text: `> ${input}` }])
+                handleCommand(input.trim())
+                setInput('')
             }
         }
-    };
+    }
 
-    const handleEditInput = () => {
-        const user = getUserFromLocalStorage();
+
+    const handleEditInput = async () => {
+        const user = await getCurrentUser()
         if (!user) {
             setCommands((prev) => [
                 ...prev,
-                { text: 'No user found in local storage.', isError: true },
-            ]);
-            return;
+                { text: 'No user found in the API.', isError: true },
+            ])
+            return
         }
 
         if (editingProperty === 'username') {
-            const updatedUser = { ...user, username: input };
-            saveUserToLocalStorage(updatedUser);
+            const updatedUser = { ...user, username: input }
+            await updateUser(updatedUser)
             setCommands((prev) => [
                 ...prev,
                 { text: `Username updated to: ${input}` },
-            ]);
-            setEditingProperty(null);
+            ])
+            setEditingProperty(null)
         } else if (editingProperty === 'password') {
             if (passwordCheck) {
-                const updatedUser = { ...user, password: input };
-                saveUserToLocalStorage(updatedUser);
+                const updatedUser = { ...user, password: input }
+                await updateUser(updatedUser)
                 setCommands((prev) => [
                     ...prev,
                     { text: 'Password changed successfully.' },
-                ]);
-                setEditingProperty(null);
-                setPasswordCheck(false);
+                ])
+                setEditingProperty(null)
+                setPasswordCheck(false)
             } else if (input === user.password) {
                 setCommands((prev) => [
                     ...prev,
                     { text: 'Current password verified. Enter new password:' },
-                ]);
-                setPasswordCheck(true);
+                ])
+                setPasswordCheck(true)
             } else {
                 setCommands((prev) => [
                     ...prev,
                     { text: 'Incorrect current password.', isError: true },
-                ]);
-                setEditingProperty(null);
+                ])
+                setEditingProperty(null)
             }
         }
-        setInput('');
-    };
+        setInput('')
+    }
 
-    const handleCommand = (command: string) => {
-        const [cmd, property, action] = command.toLowerCase().split('.');
+
+    const handleCommand = async (command: string) => {
+        const [cmd, property, action] = command.toLowerCase().split('.')
 
         if (cmd === 'user') {
-            const user = getUserFromLocalStorage();
+            const user = await getCurrentUser()
             if (!user) {
                 setCommands((prev) => [
                     ...prev,
-                    { text: 'No user found in local storage.', isError: true },
-                ]);
-                return;
+                    { text: 'No user found in the API.', isError: true },
+                ])
+                return
             }
 
             switch (property) {
@@ -119,47 +187,72 @@ const Terminal: React.FC = () => {
                     setCommands((prev) => [
                         ...prev,
                         { text: `Username: ${user.username}` },
-                    ]);
-                    break;
+                    ])
+                    break
                 case 'role':
                     setCommands((prev) => [
                         ...prev,
                         { text: `User Role: ${user.role}` },
-                    ]);
-                    break;
+                    ])
+                    break
                 case 'password':
                 case 'id':
                     setCommands((prev) => [
                         ...prev,
                         { text: `Access denied: ${property} is protected.`, isError: true },
-                    ]);
-                    break;
+                    ])
+                    break
                 case 'edit':
                     if (action === 'username') {
-                        setEditingProperty('username');
+                        setEditingProperty('username')
                         setCommands((prev) => [
                             ...prev,
                             { text: 'Enter new username:' },
-                        ]);
+                        ])
                     } else if (action === 'password') {
-                        setEditingProperty('password');
+                        setEditingProperty('password')
                         setCommands((prev) => [
                             ...prev,
                             { text: 'Enter current password:' },
-                        ]);
+                        ])
                     } else {
                         setCommands((prev) => [
                             ...prev,
                             { text: `Cannot edit ${action}.`, isError: true },
-                        ]);
+                        ])
                     }
-                    break;
+                    break
                 default:
                     setCommands((prev) => [
                         ...prev,
                         { text: `Invalid user property: ${property}`, isError: true },
-                    ]);
-                    break;
+                    ])
+                    break
+            }
+        } else if (cmd === 'users') {
+            const user = await getCurrentUser()
+
+            if (!user) {
+                setCommands((prev) => [
+                    ...prev,
+                    { text: 'No user found in the API.', isError: true },
+                ])
+                return
+            }
+            switch (property) {
+                case 'clean':
+                    if (action === 'all') {
+                        handleCleanAllUsers()
+                    } else {
+                        handleCleanUsers()
+                    }
+                    break
+                default:
+                    setCommands((prev) => [
+                        ...prev,
+                        { text: `Invalid user property: ${property}`, isError: true },
+                    ])
+                    break
             }
         } else {
             switch (cmd) {
@@ -180,44 +273,45 @@ const Terminal: React.FC = () => {
                         { text: '  ✦ echo [text]           ➔ Repeat the input text' },
                         { text: '  ✦ version               ➔ Show the terminal version' },
                         { text: '----------------------------------------------------' },
-                        { text: '❓ Help Commands:' },
-                        { text: '  ✦ help                  ➔ Display this help message' },
-                    ]);
-                    break;
+                        { text: '👨‍💼 Admin Commands:' },
+                        { text: '  ✦ users.clean           ➔ Delete all users from the API' },
+                        { text: '  ✦ users.clean.all       ➔ Delete all non-admin users from the API' },
+                    ])
+                    break
                 case 'clear':
-                    setCommands([]);
-                    break;
+                    setCommands([])
+                    break
                 case 'date':
                     setCommands((prev) => [
                         ...prev,
                         { text: `Current Date & Time: ${new Date().toLocaleString()}` },
-                    ]);
-                    break;
+                    ])
+                    break
                 case 'echo':
                     setCommands((prev) => [
                         ...prev,
-                        { text: property || '' },
-                    ]);
-                    break;
+                        { text: input.substring(5) },
+                    ])
+                    break
                 case 'version':
                     setCommands((prev) => [
                         ...prev,
-                        { text: 'Terminal version: 1.0.0' },
-                    ]);
-                    break;
+                        { text: 'Terminal Version: 1.0.0' },
+                    ])
+                    break
                 default:
                     setCommands((prev) => [
                         ...prev,
-                        { text: `Command not recognized: ${command}`, isError: true },
-                    ]);
-                    break;
+                        { text: `Unknown command: ${cmd}`, isError: true },
+                    ])
+                    break
             }
         }
-    };
+    }
 
     useEffect(() => {
-        inputRef.current?.focus();
-    }, []);
+        inputRef.current?.focus()
+    }, [])
 
     return (
         <div className={styles.terminal} onClick={() => inputRef.current?.focus()}>
@@ -232,7 +326,7 @@ const Terminal: React.FC = () => {
                 ))}
             </div>
             <div className={styles.inputContainer}>
-                <span className={styles.prompt}>&gt;</span>
+                <span className={styles.prompt}>{'>'}</span>
                 <input
                     ref={inputRef}
                     type="text"
@@ -243,7 +337,7 @@ const Terminal: React.FC = () => {
                 />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Terminal;
+export default Terminal

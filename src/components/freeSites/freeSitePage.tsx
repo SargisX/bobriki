@@ -1,5 +1,5 @@
 import { useEffect, useState, TouchEvent } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Website } from "./types"
 import { getSiteById } from "./freeSite.api"
 import styles from "./freeSitePage.module.css"
@@ -126,6 +126,7 @@ export const FreeSitePage = () => {
                     </div>
 
                     <a href={downloadPhoto} download={`${Number(siteid) - 100}.zip`}><button className={styles.button}>Download now</button></a>
+                    <Link to='/free-sites'><button className={styles.back_btn}>Back</button></Link>
                 </div>
             </div>
 

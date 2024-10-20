@@ -5,4 +5,11 @@ export interface User {
     role: string
 }
 
-export type SignUpUser = Omit<User, 'role' | 'id'>
+
+export interface SignUpUser{
+    userId:string,
+    role:string
+    timestamp:number
+}
+
+export type UserAdd = Omit<User, 'id'>

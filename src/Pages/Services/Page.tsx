@@ -1,28 +1,30 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import styles from './services.module.css'
-import { categories } from '../../../DATA/servises.ts'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from './services.module.css';
+import { categories } from '../../../DATA/servises.ts';
 
 export const Services = () => {
-    const [searchTerm, setSearchTerm] = useState('')
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-
-
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [selectedFilter, setSelectedFilter] = useState<string>('all'); // State for the selected filter
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value)
-    }
+        setSearchTerm(event.target.value);
+    };
 
+    const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedFilter(event.target.value);
+    };
 
     const filteredCategories = categories.filter(category =>
         category.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-
+    );
 
     const filteredServices = selectedCategory
         ? categories.find(category => category.name === selectedCategory)?.services.filter(service =>
-            service.toLowerCase().includes(searchTerm.toLowerCase())
-        ) : []
+            service.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            (selectedFilter === 'all' || service.toLowerCase() === selectedFilter)
+        ) : [];
 
     return (
         <div className={styles.fullPageContainer}>
@@ -32,8 +34,22 @@ export const Services = () => {
                     placeholder="Search category or service..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className={styles.searchInput}
+                    className={`${styles.searchInput} ${selectedCategory === null ? styles.fullBorder : styles.serviceStyle}`}
                 />
+                {selectedCategory !== null && ( // Show the select only when a category is selected
+                    <select 
+                        value={selectedFilter} 
+                        onChange={handleFilterChange} 
+                        className={styles.filterSelect}
+                    >
+                        <option value="all">All</option>
+                        {categories.find(category => category.name === selectedCategory)?.services.map((service, index) => (
+                            <option key={index} value={service.toLowerCase()}>
+                                {service}
+                            </option>
+                        ))}
+                    </select>
+                )}
             </div>
 
             {selectedCategory === null ? (
@@ -64,5 +80,5 @@ export const Services = () => {
                 </div>
             )}
         </div>
-    )
-}
+    );
+};

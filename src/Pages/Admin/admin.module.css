@@ -92,9 +92,35 @@
 
 @media (min-width: 491px) and (max-width: 768px) {
     .adminContainer {
-        grid-template-columns: 1fr 2fr;
+        display: grid;
+        grid-template-rows: 1fr 3fr;
+        grid-template-columns: 1fr;
+        padding-top: 20px;
+        height: 100vh;
+    }
+
+    .sidebar {
+        padding: 40px; /* Adjust padding for neat layout */
+        max-height: 100vh;
+        overflow-y: auto; /* Keep scrollable if needed */
+    }
+
+    .content {
+        padding: 25px; /* Add padding to content area */
+        overflow-y: auto; /* Ensure scrolling */
+    }
+
+    .toggleButton {
+        height: 45px; /* Comfortable button height */
+        font-size: 18px; /* Larger text for easier tapping */
+    }
+
+    .searchInput {
+        height: 50px; /* Slightly shorter than desktop */
+        font-size: 18px; /* Improve readability */
     }
 }
+
 
 
 @media (min-width: 769px) {

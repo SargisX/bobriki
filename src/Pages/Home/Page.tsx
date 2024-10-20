@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import styles from './home.module.css'
-import { FaCalendar, FaPhone, FaUser, FaCog } from 'react-icons/fa'
+import { FaCalendar, FaUser, FaCog, FaBook } from 'react-icons/fa'
 
 interface Props {
   isLoggedIn: boolean;
@@ -48,28 +48,28 @@ export const Home: React.FC<Props> = ({ isLoggedIn }) => {
         <p className={styles.description}>Explore the features of our site using the links below:</p>
 
         <div className={styles.cardContainer}>
-          <Link to="/schedule">
+          <Link to="/schedule" className={styles.link}>
             <div ref={el => (cardRefs.current[0] = el)} className={`${styles.card} ${styles.hidden}`}>
               <FaCalendar className={styles.icon} />
               <h3 className={styles.cardText}>Schedule</h3>
             </div>
           </Link>
-          <Link to="/about">
+          <Link to="/about" className={styles.link}>
             <div ref={el => (cardRefs.current[1] = el)} className={`${styles.card} ${styles.hidden}`}>
-              <FaUser className={styles.icon} />
+              <FaBook className={styles.icon} />
               <h3 className={styles.cardText}>About Us</h3>
             </div>
           </Link>
-          <Link to="/services">
+          <Link to="/services" className={styles.link}>
             <div ref={el => (cardRefs.current[2] = el)} className={`${styles.card} ${styles.hidden}`}>
               <FaCog className={styles.icon} />
               <h3 className={styles.cardText}>Our Services</h3>
             </div>
           </Link>
-          <Link to="/contact">
+          <Link to="/users" className={styles.link}>
             <div ref={el => (cardRefs.current[3] = el)} className={`${styles.card} ${styles.hidden}`}>
-              <FaPhone className={styles.icon} />
-              <h3 className={styles.cardText}>Contact Us</h3>
+            <FaUser className={styles.icon} />
+              <h3 className={styles.cardText}>Users</h3>
             </div>
           </Link>
 

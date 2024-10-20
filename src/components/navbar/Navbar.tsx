@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import { useState } from "react"
 import styles from "./Navbar.module.css"
-import { clearLoginSession } from "../auth/authUtils"
+import { clearSession } from "../auth/authUtils"
 
 interface NavbarProps {
   isLoggedIn: boolean
@@ -17,9 +17,10 @@ export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: Nav
   const closeMenu = () => setMenuOpen(false)
 
   const handleLogout = () => {
-    clearLoginSession()
+    clearSession()
     setIsLoggedIn(false)
     setRole(null)
+    localStorage.clear()
     closeMenu()
   }
 

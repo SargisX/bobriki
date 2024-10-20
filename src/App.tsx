@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
 import { Home } from "./Pages/Home/Page"
 import Navbar from "./components/navbar/Navbar"
 import { Schedule } from "./Pages/Schedule/Page"
@@ -13,24 +13,50 @@ import { FreeSitePage } from "./components/freeSites/freeSitePage"
 import SignIn from "./Pages/SignIn/Page"
 import SignUp from "./Pages/SignUp/Page"
 import { useEffect, useState } from "react"
-import { isSessionValid, getUserRole } from "./components/auth/authUtils"
+import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/auth/authUtils"
 import { Admin } from "./Pages/Admin/Page.tsx"
+import { UserList } from "./components/Users/userList.tsx"
+import { checkUserById, getUserById } from "./components/Users/users.api.ts"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [role, setRole] = useState<string | null>(null)
 
   useEffect(() => {
-
-    const validSession = isSessionValid()
-    setIsLoggedIn(validSession)
-
-    if (validSession) {
-      setRole(getUserRole())
-    } else {
-      setRole(null)
-    }
-  }, [])
+    const validSession = isSessionValid();
+    setIsLoggedIn(validSession);
+  
+    const logout = () => {
+      setRole(null);
+      clearSession();
+    };
+  
+    const checkUserSession = async () => {
+      if (!validSession) {
+        logout(); // Early return if the session is not valid
+        return;
+      }
+  
+      setRole(getUserRole()); // Set role from function if session is valid
+  
+      const usersSession = getCurrentSession();
+      try {
+        const userExists = usersSession && await checkUserById(usersSession.userId); // Await user check
+  
+        if (!userExists) {
+          logout(); // Call logout if user doesn't exist
+        }
+      } catch (error) {
+        console.error("chka tenc user");
+        logout(); // Optionally logout on error
+      }
+    };
+  
+    checkUserSession(); // Invoke the async function
+  
+  }, [isLoggedIn]); // Dependency array
+  
+  
 
   return (
     <>
@@ -48,6 +74,7 @@ function App() {
                 <Route path="/calculator" element={isLoggedIn ? <Calculator /> : <Navigate to="/signin" />} />
                 <Route path="/free-sites" element={isLoggedIn ? <FreeSite /> : <Navigate to="/signin" />} />
                 <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
+                <Route path="/users" element={isLoggedIn ? <UserList /> : <Navigate to="/signin" />} />
               </>
             )
           }
