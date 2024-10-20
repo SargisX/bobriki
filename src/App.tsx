@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import { Home } from "./Pages/Home/Page"
 import Navbar from "./components/navbar/Navbar"
 import { Schedule } from "./Pages/Schedule/Page"
@@ -16,7 +16,7 @@ import { useEffect, useState } from "react"
 import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/auth/authUtils"
 import { Admin } from "./Pages/Admin/Page.tsx"
 import { UserList } from "./components/Users/userList.tsx"
-import { checkUserById, getUserById } from "./components/Users/users.api.ts"
+import { checkUserById } from "./components/Users/users.api.ts"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
