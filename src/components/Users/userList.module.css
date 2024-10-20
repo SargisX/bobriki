@@ -1,18 +1,28 @@
+.main {
+  display: flex; /* Use flexbox to arrange child elements */
+  width: 100vw; /* Full width of the viewport */
+  height: 95vh; /* Full height of the viewport */
+  justify-content: flex-start; /* Align items to the left */
+  background: whitesmoke; /* Background color */
+}
+
 .userListContainer {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 50%; /* Set width to half of the screen */
+  height: 100%; /* Full height of the parent */
+  padding: 70px; /* Add padding around the container */
+  background: #bbbbbb; /* Background color for the user list container */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .header {
   font-size: 28px;
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #fff; /* Change header text color for visibility on black background */
 }
 
 .searchInput {
-  width: 100%;
+  width: 100%; /* Ensure input takes full width */
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -21,25 +31,46 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.scrollableList {
+  max-height: calc(100% - 100px); /* Set a maximum height based on header and search input */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  padding: 10px 0;   /* Optional: Padding inside the scrollable area */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+}
+
+.scrollableList::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
 .userList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid; /* Use grid for layout */
+  grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+  gap: 20px; /* Space between cards */
 }
 
 .card {
-  background-color: #f4f4f4;
+  background-color: #f4f4f4; /* Standard card color */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 200px;
   transition: transform 0.3s;
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.03); /* Slight zoom effect on hover */
+}
+
+.adminCard {
+  background-color: #d4edda; /* Light green background for admin card */
+  grid-column: span 3; /* Span three columns */
+  display: flex;
+  flex-direction: column; /* Vertical stacking of contents */
+  align-items: center; /* Center contents */
+  padding: 20px; /* More padding for admin card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for emphasis */
+  margin: 20px 0 ; /* Space above admin card */
 }
 
 .username {
@@ -65,4 +96,127 @@
 .password {
   font-size: 16px;
   color: #999;
+}
+
+/* Optional: Styling for better responsiveness */
+@media (max-width: 490px) {
+  .main {
+    justify-content: center;
+    flex-direction: column; /* Stack items vertically */
+
+    padding-top: 40px;
+  }
+
+  .userListContainer {
+    width: 100%; /* Full width on very small screens */
+    padding: 10px 10px 60px 10px ; /* Reduced padding */
+  }
+
+  .header {
+    font-size: 24px; /* Smaller header size */
+  }
+
+  .searchInput {
+    padding: 10px; /* Adjust padding for smaller screens */
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
+
+  .scrollableList {
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  .userList {
+    display: grid; /* Use grid for layout */
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 10px; /* Space between cards */
+  }
+
+  .card, .adminCard {
+    width: 100%; /* Full width */
+    margin-bottom: 10px; /* Space between cards */
+    height: 130px; /* Card height */
+  }
+
+  .adminCard {
+    margin-bottom: 25px; /* Space above admin card */
+    height: 150px; /* Admin card height */
+  }
+
+  .username {
+    font-size: 19px; /* Adjust font size for username */
+  }
+
+  .password {
+    font-size: 13px; /* Adjust font size for password */
+  }
+}
+
+
+@media (min-width: 491px) and (max-width: 768px) {
+  .main {
+    flex-direction: row; /* Maintain horizontal layout */
+  }
+
+  .userListContainer {
+    width: 100%; /* Full width on medium screens */
+    padding: 20px; /* Moderate padding */
+  }
+
+  .header {
+    font-size: 26px; /* Slightly smaller header */
+  }
+
+  .searchInput {
+    padding: 12px; /* Consistent padding */
+    font-size: 15px; /* Slightly smaller font size */
+  }
+
+  .scrollableList {
+    max-height: calc(100% - 120px); /* Adjust for header and input */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  .card, .adminCard {
+    width: 100%; /* Full width */
+    margin-bottom: 15px; /* Space between cards */
+  }
+
+  .adminCard {
+    margin-top: 15px; /* Space above admin card */
+  }
+}
+
+@media (min-width: 769px) {
+  .main {
+    flex-direction: row; /* Horizontal layout for larger screens */
+  }
+
+  .userListContainer {
+    width: 100%; /* Half width on larger screens */
+    padding: 20px; /* Padding remains consistent */
+  }
+
+  .header {
+    font-size: 28px; /* Standard header size */
+  }
+
+  .searchInput {
+    padding: 12px; /* Consistent padding */
+    font-size: 16px; /* Standard font size */
+  }
+
+  .scrollableList {
+    max-height: calc(100% - 100px); /* Adjust for header and input */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  .card, .adminCard {
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Space between cards */
+  }
+
+  .adminCard {
+    margin-top: 20px; /* Space above admin card */
+  }
 }
