@@ -4,12 +4,12 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => 
       cache.addAll([
-        './',  // Start URL
-        '/index.html',
-        '/favicon.ico',
-        '/manifest.json',
-        '/icon-192x192.png',
-        '/icon-512x512.png',
+        './bobriki',  // Start URL
+        '/bobriki/index.html',
+        '/bobriki/favicon.ico',
+        '/bobriki/manifest.json',
+        '/bobriki/icon-192x192.png',
+        '/bobriki/icon-512x512.png',
       ])
     )
   );
