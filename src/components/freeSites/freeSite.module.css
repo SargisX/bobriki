@@ -11,11 +11,14 @@
 }
 
 .heading {
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat for the heading */
+    font-family: 'Montserrat', sans-serif;
+    /* Use Montserrat for the heading */
     font-size: 3rem;
-    font-weight: 700; /* Adjust weight as needed */
+    font-weight: 700;
+    /* Adjust weight as needed */
     text-align: center;
-    color: #388e3c; /* Adjust color to match your theme */
+    color: #388e3c;
+    /* Adjust color to match your theme */
     margin-bottom: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     -webkit-text-stroke: 1.5px #327a3694;
@@ -37,7 +40,8 @@
     position: relative;
     padding: 20px;
     border-radius: 15px;
-    background-color: #ffffff; /* Solid white */
+    background-color: #ffffff;
+    /* Solid white */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
@@ -128,6 +132,7 @@
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     border-bottom-right-radius: 10px;
+    transition: ease-out .5s ;
 }
 
 .filterSidebar select,
@@ -204,6 +209,7 @@
     background-color: #004979;
     transform: translateY(-2px);
 }
+
 .closeFilter:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 121, 107, 0.5);
@@ -258,34 +264,47 @@
 
 @media (min-width: 491px) and (max-width: 768px) {
     .container {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
-        gap: 30px; /* More space between cards */
-        padding: 30px 20px; /* Increased padding */
+        grid-template-columns: repeat(2, 1fr);
+        /* Two columns */
+        gap: 30px;
+        /* More space between cards */
+        padding: 30px 20px;
+        /* Increased padding */
     }
 
     .card {
-        margin: 0 auto; /* Center-align the cards */
-        max-width: 90%; /* Limit card width for better alignment */
-        padding: 20px; /* Slightly more padding */
+        margin: 0 auto;
+        /* Center-align the cards */
+        max-width: 90%;
+        /* Limit card width for better alignment */
+        padding: 20px;
+        /* Slightly more padding */
     }
 
     .card h3 {
-        font-size: 1.4rem; /* Better typography for tablets */
+        font-size: 1.4rem;
+        /* Better typography for tablets */
     }
 
     .searchInput {
-        width: 60%; /* Optimized width for better usability */
-        margin: 0 auto; /* Center the search input */
+        width: 60%;
+        /* Optimized width for better usability */
+        margin: 0 auto;
+        /* Center the search input */
     }
 
     .filterButton {
-        width: 30%; /* Adjust filter button size */
-        margin: 10px auto; /* Center-align button */
+        width: 30%;
+        /* Adjust filter button size */
+        margin: 10px auto;
+        /* Center-align button */
     }
 
     .filterSidebar {
-        width: 280px; /* Slightly larger sidebar */
-        padding: 25px; /* More padding for better usability */
+        width: 280px;
+        /* Slightly larger sidebar */
+        padding: 25px;
+        /* More padding for better usability */
     }
 }
 

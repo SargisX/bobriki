@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  height: calc(100vh - 2rem);
+  height: 100vh;
   text-align: center;
   padding: 1rem;
   background: linear-gradient(to bottom right, #cda1fd, #2575fc);
@@ -52,7 +52,7 @@
   transform: translateX(-50px);
 }
 
-.link{
+.link {
   text-decoration: none;
 
 }
@@ -108,13 +108,22 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .container {
-    height: calc(95vh - 4rem);
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 490px) {
+  .container {
+    height: calc(100vh - 4rem);
+    padding-bottom: 40px;
   }
 
   .heading {
     font-size: 2rem;
+    padding-top: 1rem;
+
   }
 
   .description {
@@ -134,11 +143,5 @@
   .card>h3 {
     color: #dab7ff;
     font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 490px) {
-  .container {
-    padding-bottom: 40px;
   }
 }

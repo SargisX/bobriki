@@ -18,9 +18,10 @@
 
 @media (max-width: 768px) {
     .fullPageContainer {
-        padding: 1rem;
+        padding-top:2rem;
         max-width: 100%;
-        min-height: calc(90vh - 20px);
+        min-height: calc(100vh - 4rem);
+        margin: 0;
     }
 }
 

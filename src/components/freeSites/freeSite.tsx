@@ -63,8 +63,9 @@ export const FreeSite = () => {
     }
 
     const toggleFilterVisibility = () => {
-        setIsFilterVisible(!isFilterVisible)
-    }
+        setIsFilterVisible((prev) => !prev);
+    };
+    
 
     useEffect(() => {
         const applyFilters = () => {
@@ -150,7 +151,7 @@ export const FreeSite = () => {
 
 
 
-                <div className={styles.filterSidebar} style={{ display: isFilterVisible ? 'block' : 'none' }}>
+                <div className={styles.filterSidebar} style={{ left: isFilterVisible ? 0 : -400 }}>
 
                     <select name="category" value={filters.category} onChange={handleFilterChange}>
                         <option value="All">All</option>
