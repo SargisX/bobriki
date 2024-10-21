@@ -1,71 +1,65 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import Navbar from "./components/navbar/Navbar";
-import { Home } from "./Pages/Home/Page";
-import { Schedule } from "./Pages/Schedule/Page";
-import { Error404 } from "./components/error404/Page";
-import { Services } from "./Pages/Services/Page";
-import { SolutionPage } from "./components/gaussianScheme/Solution";
-import { GaussianSolver } from "./components/gaussianScheme/gaussian_scheme";
-import { Calculator } from "./components/calculator/calculator";
-import { FreeSite } from "./components/freeSites/freeSite";
-import { FreeSitePage } from "./components/freeSites/freeSitePage";
-import SignIn from "./Pages/SignIn/Page";
-import SignUp from "./Pages/SignUp/Page";
-import { Admin } from "./Pages/Admin/Page";
-import { UserList } from "./components/Users/userList";
-import { 
-  isSessionValid, 
-  getUserRole, 
-  clearSession, 
-  getCurrentSession 
-} from "./components/auth/authUtils";
-import { checkUserById } from "./components/Users/users.api";
-import { useNotifications } from "./hooks/Notification/useNotification";
-import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom"
+import { Home } from "./Pages/Home/Page"
+import Navbar from "./components/navbar/Navbar"
+import { Schedule } from "./Pages/Schedule/Page"
+import { Error404 } from "./components/error404/Page"
+import "./App.css"
+import { Services } from "./Pages/Services/Page"
+import { SolutionPage } from "./components/gaussianScheme/Solution"
+import { GaussianSolver } from "./components/gaussianScheme/gaussian_scheme"
+import { Calculator } from "./components/calculator/calculator"
+import { FreeSite } from "./components/freeSites/freeSite"
+import { FreeSitePage } from "./components/freeSites/freeSitePage"
+import SignIn from "./Pages/SignIn/Page"
+import SignUp from "./Pages/SignUp/Page"
+import { useEffect, useState } from "react"
+import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/auth/authUtils"
+import { Admin } from "./Pages/Admin/Page.tsx"
+import { UserList } from "./components/Users/userList.tsx"
+import { checkUserById } from "./components/Users/users.api.ts"
+import { useNotifications } from "./hooks/Notification/useNotification.ts"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [role, setRole] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+  const [role, setRole] = useState<string | null>(null)
   const { requestPermission } = useNotifications();
 
-  // Centralized logout function
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setRole(null);
-    clearSession();
-  }, []);
-
-  // Check user session validity on load and sync role
-  const checkUserSession = useCallback(async () => {
+  useEffect(() => {
     const validSession = isSessionValid();
     setIsLoggedIn(validSession);
-
-    if (!validSession) {
-      logout();
-      return;
-    }
-
-    const usersSession = getCurrentSession();
-    setRole(getUserRole());
-
-    try {
-      const userExists = usersSession && await checkUserById(usersSession.userId);
-      if (!userExists) logout();
-    } catch (error) {
-      console.error("User not found or error occurred:", error);
-      logout();
-    }
-  }, [logout]);
-
-  // Run session check and notification permission on mount
-  useEffect(() => {
-    requestPermission();
-    checkUserSession();
-    window.addEventListener("online", checkUserSession);
-
-    return () => window.removeEventListener("online", checkUserSession);
-  }, [checkUserSession, requestPermission]);
+  
+    const logout = () => {
+      setRole(null);
+      clearSession();
+    };
+  
+    const checkUserSession = async () => {
+      if (!validSession) {
+        logout(); // Early return if the session is not valid
+        return;
+      }
+  
+      setRole(getUserRole()); // Set role from function if session is valid
+  
+      const usersSession = getCurrentSession();
+      try {
+        const userExists = usersSession && await checkUserById(usersSession.userId); // Await user check
+  
+        if (!userExists) {
+          logout(); // Call logout if user doesn't exist
+        }
+      } catch (error) {
+        console.error("chka tenc user");
+        logout(); // Optionally logout on error
+      }
+    };
+    requestPermission()
+  
+    checkUserSession(); // Invoke the async function
+  
+  }, [isLoggedIn]); // Dependency array
+  
+  
 
   return (
     <>
@@ -100,4 +94,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
