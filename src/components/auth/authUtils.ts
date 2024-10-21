@@ -11,18 +11,18 @@ export const saveLoginSession = (user: User) => {
         role,
     }
 
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(sessionData))
+    localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData))
 
     return { id, username, role }
 }
 
 
 export const clearSession = () => {
-    sessionStorage.removeItem(SESSION_KEY)
+    localStorage.removeItem(SESSION_KEY)
 }
 
 export const isSessionValid = () => {
-    const sessionData = sessionStorage.getItem(SESSION_KEY)
+    const sessionData = localStorage.getItem(SESSION_KEY)
     if (!sessionData) return false
 
     const { timestamp } = JSON.parse(sessionData)
@@ -31,12 +31,12 @@ export const isSessionValid = () => {
 }
 
 export const getUserRole = () => {
-    const sessionData = sessionStorage.getItem(SESSION_KEY)
+    const sessionData = localStorage.getItem(SESSION_KEY)
     return sessionData ? JSON.parse(sessionData).role : null
 }
 
 
 export const getCurrentSession = (): SignUpUser | null => {
-    const sessionData = sessionStorage.getItem(SESSION_KEY)
+    const sessionData = localStorage.getItem(SESSION_KEY)
     return sessionData ? JSON.parse(sessionData) : null
 }

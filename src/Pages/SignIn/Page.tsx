@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { saveLoginSession } from "../../components/auth/authUtils";
+import { isSessionValid, saveLoginSession } from "../../components/auth/authUtils";
 import styles from "./signIn.module.css";
 import { getUserByUsername } from "../../components/Users/users.api";
 
@@ -26,7 +26,13 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
                 return;
             }
 
+            
             const role = user.username === "@ADMIN_SMaster" ? "admin" : user.role;
+            if(isSessionValid()){
+                setIsLoggedIn(true)
+                setRole(role);
+                navigate('/')
+            }
             setIsLoggedIn(true);
             setRole(role);
             saveLoginSession(user);
