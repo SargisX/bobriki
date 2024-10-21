@@ -81,11 +81,11 @@ define(['./workbox-b5f7729d'], (function (workbox) { 'use strict';
     "url": "registerSW.js",
     "revision": "8cf999b9c3bc7192f16b8dd3d32841b3"
   }, {
-    "url": "/bobriki/index.html",
-    "revision": "0.7cel1af7b3"
+    "url": "index.html",
+    "revision": "0.9fj8sif58to"
   }], {});
   workbox.cleanupOutdatedCaches();
-  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/bobriki/index.html"), {
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
 

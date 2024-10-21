@@ -29,9 +29,6 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
-        navigateFallback: '/bobriki/index.html',  // Ensures navigation works offline
-      },
       devOptions: {
         enabled: true, // Ensures service worker works during development
       },
