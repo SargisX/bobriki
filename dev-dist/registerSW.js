@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/bobriki/dev-sw.js?dev-sw', { scope: '/bobriki/', type: 'classic' })
