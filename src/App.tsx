@@ -17,10 +17,12 @@ import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./
 import { Admin } from "./Pages/Admin/Page.tsx"
 import { UserList } from "./components/Users/userList.tsx"
 import { checkUserById } from "./components/Users/users.api.ts"
+import { useNotifications } from "./components/Notification/useNotification.ts"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
   const [role, setRole] = useState<string | null>(null)
+  const { requestPermission } = useNotifications();
 
   useEffect(() => {
     const validSession = isSessionValid();
@@ -51,6 +53,7 @@ function App() {
         logout(); // Optionally logout on error
       }
     };
+    requestPermission()
   
     checkUserSession(); // Invoke the async function
   

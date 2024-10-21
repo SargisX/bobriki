@@ -35,11 +35,18 @@ export default defineConfig({
       devOptions: {
         enabled: true, // Ensures service worker works during development
       },
-    })   
+    })
   ],
   base: "/bobriki/",
-  server:{
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Avoids chunks being split incorrectly
+      },
+    },
+  },
+  server: {
     host: true,
-    port : 5173,
+    port: 5173,
   }
 })

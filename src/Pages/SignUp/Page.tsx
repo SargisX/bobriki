@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./signUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser, getUserByUsername } from "../../components/Users/users.api";
+// import { useNotifications } from "../../components/Notification/useNotification";
+import { useToastify } from "../../components/Notification/useToastify";
 
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("");
@@ -9,6 +11,8 @@ const SignUp: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState(""); 
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    // const { showLocalNotification, sendNotification } = useNotifications();
+    const {notify} = useToastify()
     const navigate = useNavigate();
 
     const handleSignUp = async (e: React.FormEvent) => {
@@ -23,18 +27,20 @@ const SignUp: React.FC = () => {
             setIsSubmitting(false);
             return;
         }
-
+        
         if (password !== confirmPassword) {
             setError("Passwords do not match.");
+            notify(`Passwords do not match.`, "error")
             setIsSubmitting(false);
             return;
         }
-
+        
         try {
             const existingUser = await getUserByUsername(username);
-
+            
             if (existingUser) {
                 setError("Username already taken. Please choose another one.");
+                notify(`Username already taken.`, "error")
                 setIsSubmitting(false);
                 return;
             }
@@ -46,7 +52,11 @@ const SignUp: React.FC = () => {
             };
             await createUser(newUser);
 
-            alert(`Welcome, you're signed up as ${username}`);
+            // showLocalNotification('Sign in', sendNotification(
+            //     `Welcome, you're signed up as ${username}`,
+            //     'https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/bobrik.jpg'
+            // ));
+            notify(`Welcome, you're signed up as ${username}`,"success")
             navigate("/signin");
         } catch (error) {
             setError("Sign-up failed. Please try again.");

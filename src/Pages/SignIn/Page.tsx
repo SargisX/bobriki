@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { isSessionValid, saveLoginSession } from "../../components/auth/authUtils";
 import styles from "./signIn.module.css";
 import { getUserByUsername } from "../../components/Users/users.api";
+// import { useNotifications } from "../../components/Notification/useNotification";
+import { useToastify } from "../../components/Notification/useToastify";
 
 interface SignInProps {
     setIsLoggedIn: (value: boolean) => void;
@@ -13,6 +15,8 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    // const { showLocalNotification, sendNotification } = useNotifications();
+    const { notify } = useToastify()
     const navigate = useNavigate();
 
     const handleSignIn = async (e: React.FormEvent) => {
@@ -23,12 +27,14 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
 
             if (!user || user.password !== password) {
                 setError("Invalid username or password.");
+                notify('Invalid username or password.','error', {
+                    });
                 return;
             }
 
-            
+
             const role = user.username === "@ADMIN_SMaster" ? "admin" : user.role;
-            if(isSessionValid()){
+            if (isSessionValid()) {
                 setIsLoggedIn(true)
                 setRole(role);
                 navigate('/')
@@ -37,7 +43,12 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
             setRole(role);
             saveLoginSession(user);
 
-            alert(`Logged in as ${role}`);
+            // showLocalNotification('Sign in', sendNotification(
+            //     `Logged in as ${role}`,
+            //     'https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/bobrik.jpg'
+            // ));
+            notify(`Logged in as ${role}`, "success")
+
             navigate("/");
         } catch (error) {
             console.error("Error during sign-in:", error);
@@ -46,7 +57,7 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
     };
 
     return (
-        <div className={styles.container}> 
+        <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSignIn}>
                 <h2 className={styles.title}>Sign in to Account</h2>
                 <div className={styles.imageContainer}>
@@ -71,7 +82,7 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
                 />
                 <button type="submit" className={styles.button}>Sign In</button>
                 {error && <p className={styles.error}>{error}</p>}
-    
+
                 <div className={styles.links}>
                     <Link to="/forgot-password" className={styles.link}>Forgot Password?</Link>
                     <span className={styles.separator}>|</span>
