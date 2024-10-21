@@ -5,11 +5,10 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME).then((cache) => 
       cache.addAll([
         './bobriki',  // Start URL
-        '/bobriki/index.html',
-        '/bobriki/favicon.ico',
-        '/bobriki/manifest.json',
-        '/bobriki/icon-192x192.png',
-        '/bobriki/icon-512x512.png',
+        'https://raw.githubusercontent.com/SargisX/bobriki/main/index.html',
+        'https://raw.githubusercontent.com/SargisX/bobriki/main/public/manifest.json',
+        'https://raw.githubusercontent.com/SargisX/bobriki/main/public/icon-192x192.png',
+        'https://raw.githubusercontent.com/SargisX/bobriki/main/public/icon-512x512.png',
       ])
     )
   );
