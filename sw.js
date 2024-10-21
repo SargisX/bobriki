@@ -1,1 +1,25 @@
-if(!self.define){let e,s={};const i=(i,n)=>(i=new URL(i+".js",n).href,s[i]||new Promise((s=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=s,document.head.appendChild(e)}else e=i,importScripts(i),s()})).then((()=>{let e=s[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e})));self.define=(n,r)=>{const t=e||("document"in self?document.currentScript.src:"")||location.href;if(s[t])return;let o={};const l=e=>i(e,t),c={module:{uri:t},exports:o,require:l};s[t]=Promise.all(n.map((e=>c[e]||l(e)))).then((e=>(r(...e),o)))}}define(["./workbox-3e911b1d"],(function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"assets/index-DWI0siZZ.css",revision:null},{url:"assets/index-FsXYs6mp.js",revision:null},{url:"index.html",revision:"6f2c13d965120a4d955f748240961fe2"},{url:"registerSW.js",revision:"bba31d891cc16c582ee4cba4750911ef"},{url:"manifest.webmanifest",revision:"a6683ee99ece8e98501d5cc9629af0d2"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))}));
+const CACHE_NAME = 'bobriki-cache-v3'; // Update version to force refresh
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => 
+      cache.addAll([
+        './',  // Start URL
+        '/index.html',
+        '/favicon.ico',
+        '/manifest.json',
+        '/icon-192x192.png',
+        '/icon-512x512.png',
+      ])
+    )
+  );
+  self.skipWaiting(); // Activate immediately
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => 
+      response || fetch(event.request)
+    )
+  );
+});
