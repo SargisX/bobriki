@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register('/your-repo-name/sw.js')
+      .register('/bobriki/sw.js')
       .then((registration) => console.log('SW registered:', registration))
       .catch((error) => console.error('SW registration failed:', error));
   });
