@@ -16,6 +16,7 @@ body {
   align-items: center;
   background: linear-gradient(to top, #ddfaff, #ddfff2);
   font-size: 16px;
+  
 }
 
 body::-webkit-scrollbar {
