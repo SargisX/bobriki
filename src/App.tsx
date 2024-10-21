@@ -69,52 +69,35 @@ function App() {
 
   return (
     <>
-      <Navbar 
-        isLoggedIn={isLoggedIn} 
-        role={role} 
-        setIsLoggedIn={setIsLoggedIn} 
-        setRole={setRole} 
-      />
-
+      <Navbar isLoggedIn={isLoggedIn} role={role} setIsLoggedIn={setIsLoggedIn} setRole={setRole} />
       <div className="app-content">
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+          {
+            isLoggedIn && (
+              <>
+                <Route path="/schedule" element={isLoggedIn ? <Schedule /> : <Navigate to="/signin" />} />
+                <Route path="/services" element={isLoggedIn ? <Services /> : <Navigate to="/signin" />} />
+                <Route path="/gaussian-scheme" element={isLoggedIn ? <GaussianSolver /> : <Navigate to="/signin" />} />
+                <Route path="/solution/:timestamp" element={isLoggedIn ? <SolutionPage /> : <Navigate to="/signin" />} />
+                <Route path="/calculator" element={isLoggedIn ? <Calculator /> : <Navigate to="/signin" />} />
+                <Route path="/free-sites" element={isLoggedIn ? <FreeSite /> : <Navigate to="/signin" />} />
+                <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
+                <Route path="/users" element={isLoggedIn ? <UserList /> : <Navigate to="/signin" />} />
+              </>
+            )
+          }
 
-          {/* Private Routes */}
-          {isLoggedIn ? (
-            <>
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/gaussian-scheme" element={<GaussianSolver />} />
-              <Route path="/solution/:timestamp" element={<SolutionPage />} />
-              <Route path="/calculator" element={<Calculator />} />
-              <Route path="/free-sites" element={<FreeSite />} />
-              <Route path="/free-sites/:siteid" element={<FreeSitePage />} />
-              <Route path="/users" element={<UserList />} />
+          <Route path="/signup" element={isLoggedIn ? <Navigate to="/" /> : <SignUp />} />
+          <Route path="/signin" element={isLoggedIn ? <Navigate to="/" /> : <SignIn setIsLoggedIn={setIsLoggedIn} setRole={setRole} />} />
 
-              {role === "admin" && <Route path="/admin" element={<Admin />} />}
-            </>
-          ) : (
-            <>
-              <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} setRole={setRole} />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="*" element={<Navigate to="/signin" />} />
-            </>
-          )}
-
-          {/* Handle Public Routes and 404 */}
-          {!isLoggedIn && (
-            <>
-              <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} setRole={setRole} />} />
-              <Route path="/signup" element={<SignUp />} />
-            </>
-          )}
+          {role === 'admin' && <Route path="/admin" element={<Admin />} />}
 
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
     </>
-  );
+  )
 }
 
 export default App;
