@@ -4,7 +4,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => 
       cache.addAll([
-        './bobriki',  // Start URL
+        './',  // Start URL
         'https://raw.githubusercontent.com/SargisX/bobriki/main/index.html',
         'https://raw.githubusercontent.com/SargisX/bobriki/main/public/manifest.json',
         'https://raw.githubusercontent.com/SargisX/bobriki/main/public/icon-192x192.png',
