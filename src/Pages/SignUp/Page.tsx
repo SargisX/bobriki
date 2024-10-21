@@ -3,7 +3,7 @@ import styles from "./signUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser, getUserByUsername } from "../../components/Users/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";
-import { useToastify } from "../../components/Notification/useToastify";
+import { useToastify } from "../../hooks/Notification/useToastify";
 
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("");

@@ -1,19 +1,25 @@
-self.addEventListener('push', (event) => {
-  const data = event.data ? event.data.json() : {};
-  const options = {
-    body: data.body || 'You have a new notification!',
-    icon: data.icon || '/favicon.ico',
-    badge: data.badge || '/badge-icon.png',
-  };
+const CACHE_NAME = 'bobriki-cache-v3'; // Update version to force refresh
 
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    self.registration.showNotification(data.title || 'Notification', options)
+    caches.open(CACHE_NAME).then((cache) => 
+      cache.addAll([
+        './',  // Start URL
+        '/index.html',
+        '/favicon.ico',
+        '/manifest.json',
+        '/icon-192x192.png',
+        '/icon-512x512.png',
+      ])
+    )
   );
+  self.skipWaiting(); // Activate immediately
 });
 
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  event.waitUntil(
-    clients.openWindow(event.notification.data.url || '/')
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => 
+      response || fetch(event.request)
+    )
   );
 });

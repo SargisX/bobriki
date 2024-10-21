@@ -4,7 +4,7 @@ import { isSessionValid, saveLoginSession } from "../../components/auth/authUtil
 import styles from "./signIn.module.css";
 import { getUserByUsername } from "../../components/Users/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";
-import { useToastify } from "../../components/Notification/useToastify";
+import { useToastify } from "../../hooks/Notification/useToastify";
 
 interface SignInProps {
     setIsLoggedIn: (value: boolean) => void;
