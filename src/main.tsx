@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify'
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/bobriki/sw.js')
+    .register('https://raw.githubusercontent.com/SargisX/bobriki/main/public/sw.js')
     .then((registration) => {
       console.log('Service Worker registered with scope:', registration.scope);
     })
