@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { ToastContainer } from 'react-toastify'
@@ -19,7 +19,7 @@ if ('serviceWorker' in navigator) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter basename='/bobriki/'>
       <App />
       <ToastContainer
         position="top-right"
@@ -34,6 +34,6 @@ createRoot(document.getElementById('root')!).render(
         pauseOnHover
         theme="colored"
       />
-    </HashRouter>
+    </BrowserRouter>
   </StrictMode>,
 )
