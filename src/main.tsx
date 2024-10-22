@@ -5,16 +5,19 @@ import './index.css'
 import App from './App.tsx'
 import { ToastContainer } from 'react-toastify'
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('https://raw.githubusercontent.com/SargisX/bobriki/main/public/sw.js')
-    .then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
-    })
-    .catch((error) => {
-      console.error('Service Worker registration failed:', error);
-    });
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", async () => {
+    try {
+      const registration = await navigator.serviceWorker.register("/bobriki/sw.js");
+      console.log("Service worker registered with scope:", registration.scope);
+    } catch (error) {
+      console.error("Service worker registration failed:", error);
+    }
+  });
+} else {
+  console.warn("Service workers are not supported in this browser.");
 }
+
 
 
 createRoot(document.getElementById('root')!).render(
