@@ -26,7 +26,7 @@ const Terminal: React.FC = () => {
 
 
     const getCurrentUser = async (): Promise<User | null> => {
-        const sessionData = sessionStorage.getItem('user_session')
+        const sessionData = localStorage.getItem('user_session')
         const currentUserId = sessionData ? JSON.parse(sessionData).userId : null
 
         if (!currentUserId) return null

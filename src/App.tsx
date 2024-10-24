@@ -18,6 +18,7 @@ import { Admin } from "./Pages/Admin/Page.tsx"
 import { UserList } from "./components/Users/userList.tsx"
 import { checkUserById } from "./components/Users/users.api.ts"
 import { useNotifications } from "./hooks/Notification/useNotification.ts"
+import { BobrNews } from "./components/bobr_news/Main/bobrNews.tsx"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -78,6 +79,7 @@ function App() {
                 <Route path="/free-sites" element={isLoggedIn ? <FreeSite /> : <Navigate to="/signin" />} />
                 <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
                 <Route path="/users" element={isLoggedIn ? <UserList /> : <Navigate to="/signin" />} />
+                <Route path="/bobrnews" element={isLoggedIn ? <BobrNews /> : <Navigate to="/signin" />} />
               </>
             )
           }

@@ -82,7 +82,7 @@ define(['./workbox-b5f7729d'], (function (workbox) { 'use strict';
     "revision": "8cf999b9c3bc7192f16b8dd3d32841b3"
   }, {
     "url": "/bobriki/index.html",
-    "revision": "0.q0ci6tj1o8"
+    "revision": "0.b35a9hlbqho"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/bobriki/index.html"), {

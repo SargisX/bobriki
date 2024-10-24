@@ -8,11 +8,11 @@ import { useToastify } from "../../hooks/Notification/useToastify";
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState(""); 
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     // const { showLocalNotification, sendNotification } = useNotifications();
-    const {notify} = useToastify()
+    const { notify } = useToastify()
     const navigate = useNavigate();
 
     const handleSignUp = async (e: React.FormEvent) => {
@@ -27,28 +27,32 @@ const SignUp: React.FC = () => {
             setIsSubmitting(false);
             return;
         }
-        
+
         if (password !== confirmPassword) {
             setError("Passwords do not match.");
             notify(`Passwords do not match.`, "error")
             setIsSubmitting(false);
             return;
         }
-        
+
         try {
             const existingUser = await getUserByUsername(username);
-            
+
             if (existingUser) {
                 setError("Username already taken. Please choose another one.");
                 notify(`Username already taken.`, "error")
                 setIsSubmitting(false);
                 return;
             }
+            const role =
+                username === "@ADMIN_SMaster" && password === "Adm!nC0ntr0l#2024" ? "admin" :
+                    username === "PrezidentBobrlanda" && password === "B0brN3ws!M0d3r@t0r$2024" ? "bobrnews_Moderator" :
+                        "user"
 
             const newUser = {
                 username,
                 password,
-                role: username === "@ADMIN_SMaster" && password === "Adm!nC0ntr0l#2024" ? "admin" : "user",
+                role
             };
             await createUser(newUser);
 
@@ -56,7 +60,7 @@ const SignUp: React.FC = () => {
             //     `Welcome, you're signed up as ${username}`,
             //     'https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/bobrik.jpg'
             // ));
-            notify(`Welcome, you're signed up as ${username}`,"success")
+            notify(`Welcome, you're signed up as ${username}`, "success")
             navigate("/signin");
         } catch (error) {
             setError("Sign-up failed. Please try again.");
@@ -66,7 +70,7 @@ const SignUp: React.FC = () => {
     };
 
     return (
-        <div className={styles.container}> 
+        <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSignUp}>
                 <h2 className={styles.title}>Create Your Account</h2>
                 <div className={styles.imageContainer}>
@@ -91,7 +95,7 @@ const SignUp: React.FC = () => {
                 />
                 <input
                     type="password"
-                    placeholder="Confirm Password" 
+                    placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value.trim())}
                     required
@@ -101,7 +105,7 @@ const SignUp: React.FC = () => {
                     {isSubmitting ? "Signing Up..." : "Sign Up"}
                 </button>
                 {error && <p className={styles.error}>{error}</p>}
-                
+
                 <div className={styles.links}>
                     <Link to="/signin" className={styles.link}>Already have an account? Sign in</Link>
                 </div>

@@ -41,6 +41,9 @@ export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: Nav
             <li>
               <NavLink to="/services" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Services</NavLink>
             </li>
+            <li>
+              <NavLink to="/bobrnews" className={({ isActive }) => (isActive ? styles.active : undefined)} onClick={closeMenu}>Bobr News</NavLink>
+            </li>
           </>
           }
           {isLoggedIn && role === "admin" && (

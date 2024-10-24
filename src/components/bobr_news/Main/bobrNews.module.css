@@ -1,0 +1,253 @@
+.bg {
+    width: 100vw;
+    height: calc(100vh - 3rem);
+    background: rgb(226, 226, 226);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bobrContainer {
+    padding: 20px;
+    max-width: 800px;
+    height: calc(100vh - 4rem);
+    overflow: auto;
+    margin: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
+    border-radius: 10px;
+}
+
+.bobrContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.bobrHeader {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bobrHeader h1 {
+    font-size: 2.5em;
+    color: #222;
+    font-weight: bold;
+}
+
+.bobrHeader p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.newsList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.newsCard {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.5s ease;
+}
+
+.newsCard:hover {
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.301);
+    transform: translateY(-5px);
+}
+
+.newsImageContainer {
+    width: 40%;
+    background-color: #e0e0e0;
+}
+
+.newsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.newsContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.newsContent h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.newsContent p {
+    flex-grow: 1;
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #666;
+}
+
+.reactions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    color: #888;
+}
+
+.reactions span {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.date {
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.description {
+    background: rgba(161, 213, 255, 0.274);
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px 5px 5px;
+}
+
+.articleSign {
+    font-size: 50px;
+    color: #53baff;
+    -webkit-text-stroke: 1.5px #45aef5;
+    align-self: start;
+}
+
+.coloredPart {
+    background: #53baff !important;
+    border-radius: 10px;
+    margin-left: 5px;
+    max-width: 5px;
+    min-width: 4px;
+    height: 90%;
+}
+
+/* Media Queries */
+@media (max-width: 490px) {
+    .bobrHeader h1 {
+        font-size: 1.8em;
+        /* Smaller font size for smaller screens */
+    }
+
+    .bobrHeader p {
+        font-size: 1em;
+        /* Adjusted paragraph size */
+    }
+
+    .newsCard {
+        flex-direction: column;
+        /* Stack elements vertically */
+        max-width: 90%;
+        /* Smaller width for the card */
+        margin: 0 auto;
+        /* Center the card */
+    }
+
+    .newsImageContainer {
+        width: 100%;
+        /* Full width on small screens */
+        height: 100%;
+        /* Let the height adjust automatically */
+    }
+
+    .newsImage {
+        height: 200px;
+        /* Fixed height for mobile */
+    }
+
+    .newsContent {
+        width: 100%;
+        /* Full width on small screens */
+        padding: 10px;
+        /* Reduced padding */
+    }
+
+    .newsContent h2 {
+        font-size: 1.5em;
+        /* Smaller title */
+    }
+
+    .newsContent p {
+        font-size: 1em;
+        /* Smaller description */
+    }
+
+    .date {
+        font-size: 0.75em;
+    }
+
+    .coloredPart {
+        background: #53baff !important;
+        border-radius: 10px;
+        margin-left: 5px;
+        max-width: 5px;
+        min-width: 4px;
+        height: 130px;
+    }
+}
+
+@media (min-width: 491px) and (max-width: 768px) {
+    .bobrHeader h1 {
+        font-size: 2.2em;
+        /* Adjusted header size */
+    }
+
+    .bobrHeader p {
+        font-size: 1.1em;
+        /* Adjusted paragraph size */
+    }
+
+    .newsCard {
+        flex-direction: row;
+        /* Horizontal layout */
+    }
+
+    .newsImageContainer {
+        width: 50%;
+        /* Adjust width for medium screens */
+    }
+
+    .newsContent {
+        width: 50%;
+        /* Adjust width for medium screens */
+    }
+}
+
+@media (min-width: 769px) {
+    .bobrHeader h1 {
+        font-size: 2.5em;
+        /* Larger header size */
+    }
+
+    .bobrHeader p {
+        font-size: 1.2em;
+        /* Larger paragraph size */
+    }
+
+    .newsCard {
+        flex-direction: row;
+        /* Horizontal layout */
+    }
+
+    .newsImageContainer {
+        width: 40%;
+        /* Standard width */
+    }
+
+    .newsContent {
+        width: 60%;
+        /* Standard width */
+    }
+}

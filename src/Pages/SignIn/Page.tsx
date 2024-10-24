@@ -27,13 +27,14 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
 
             if (!user || user.password !== password) {
                 setError("Invalid username or password.");
-                notify('Invalid username or password.','error', {
-                    });
+                notify('Invalid username or password.', 'error', {
+                });
                 return;
             }
 
 
-            const role = user.username === "@ADMIN_SMaster" ? "admin" : user.role;
+            // const role = user.username === "@ADMIN_SMaster" ? "admin" : user.role;
+            const role = user.role;
             if (isSessionValid()) {
                 setIsLoggedIn(true)
                 setRole(role);
@@ -47,7 +48,11 @@ const SignIn: React.FC<SignInProps> = ({ setIsLoggedIn, setRole }) => {
             //     `Logged in as ${role}`,
             //     'https://raw.githubusercontent.com/SargisX/bobriki/main/src/assets/bobrik.jpg'
             // ));
-            notify(`Logged in as ${role}`, "success")
+            const notifyRole = role
+                .split("_")
+                .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+                .join(" ");
+            notify(`Logged in as ${notifyRole}`, "success")
 
             navigate("/");
         } catch (error) {
