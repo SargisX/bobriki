@@ -90,51 +90,57 @@ export const BobrNews = () => {
 
 
 
-    return addPost ? (
-        <div className={styles.addPostPopup}>
-            <BobrNewsAdd addPost={addPost} setAddPost={toggleAddPost} refreshNews={refreshNews} />
-        </div>
-    ) : (
-        <div className={styles.bg}>
-            <div className={styles.bobrContainer}>
-                {(userRole === "admin" || userRole === "bobrnews_Moderator") && (
-                    <div className={styles.AddNewBtn}>
-                        <button onClick={toggleAddPost}>ADD</button>
+    return (
+        <div className={styles.main}>
+            {
+                addPost ? (
+                    <div className={styles.addPostPopup}>
+                        <BobrNewsAdd addPost={addPost} setAddPost={toggleAddPost} refreshNews={refreshNews} />
                     </div>
-                )}
-                <div className={styles.bobrHeader}>
-                    <h1>Bobr News</h1>
-                    <p>Bobr News is where the most viral stories come to life!</p>
-                </div>
-                <div className={styles.newsList}>
-                    {news.map((item) => (
-                        <div key={item.id} className={styles.newsCard}>
-                            <div className={styles.newsImageContainer}>
-                                <img
-                                    src={item.photo}
-                                    alt={item.title}
-                                    className={styles.newsImage}
-                                />
+                ) : (
+                    <div className={styles.bg}>
+                        <div className={styles.bobrContainer}>
+                            {(userRole === "admin" || userRole === "bobrnews_Moderator") && (
+                                <div className={styles.AddNewBtn}>
+                                    <button onClick={toggleAddPost}>ADD</button>
+                                </div>
+                            )}
+                            <div className={styles.bobrHeader}>
+                                <h1>Bobr News</h1>
+                                <p>Bobr News is where the most viral stories come to life!</p>
                             </div>
-                            <div className={styles.newsContent}>
-                                <h2>{parseAndTransformText(item.title)}</h2>
-                                <div className={styles.description}>
-                                    <span className={styles.coloredPart}></span>
-                                    <p>{parseAndTransformText(item.description)}</p>
-                                    <span className={styles.articleSign}>“</span>
-                                </div>
-                                <div className={styles.reactions}>
-                                    <span>❤️ {item.likes.length}</span>
-                                    <span>💬 {item.comments.length}</span>
-                                    <span className={styles.date}>
-                                        {formatDate(item.date)}
-                                    </span>
-                                </div>
+                            <div className={styles.newsList}>
+                                {news.map((item) => (
+                                    <div key={item.id} className={styles.newsCard}>
+                                        <div className={styles.newsImageContainer}>
+                                            <img
+                                                src={item.photo}
+                                                alt={item.title}
+                                                className={styles.newsImage}
+                                            />
+                                        </div>
+                                        <div className={styles.newsContent}>
+                                            <h2>{parseAndTransformText(item.title)}</h2>
+                                            <div className={styles.description}>
+                                                <span className={styles.coloredPart}></span>
+                                                <p>{parseAndTransformText(item.description)}</p>
+                                                <span className={styles.articleSign}>“</span>
+                                            </div>
+                                            <div className={styles.reactions}>
+                                                <span>❤️ {item.likes.length}</span>
+                                                <span>💬 {item.comments.length}</span>
+                                                <span className={styles.date}>
+                                                    {formatDate(item.date)}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
+                    </div>
+                )
+            }
         </div>
-    );
+    )
 };

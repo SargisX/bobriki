@@ -24,6 +24,7 @@ export const UserList = () => {
     // Check if there's an admin user
     const adminUser = users.find(user => user.role === 'admin');
 
+
     return (
         <div className={styles.main}>
             <div className={styles.userListContainer}>
@@ -50,7 +51,14 @@ export const UserList = () => {
                                 <div key={user.id} className={styles.card}>
                                     <h3 className={styles.username}>{user.username}</h3>
                                     <p className={styles.password}>Password: {'*'.repeat(8)}</p>
-                                    <p className={styles.role}>Role: {user.role}</p>
+                                    <p className={styles.role}>Role:
+                                        {
+                                            user.role
+                                                .split("_")
+                                                .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+                                                .join(" ")
+                                        }
+                                    </p>
                                     <span className={styles.index}>#{Number(user.id) - 1}</span>
                                 </div>
                             )
