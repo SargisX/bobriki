@@ -1,0 +1,83 @@
+/* Background overlay */
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal container covering 80% */
+.modalContent {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80vw;
+    height: 80vh;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form group layout */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Input fields */
+.inputField, 
+.textAreaField {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Image preview */
+.imagePreview {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Button container */
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.submitButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #45a049;
+}
+
+.cancelButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.cancelButton:hover {
+    background-color: #d32f2f;
+}

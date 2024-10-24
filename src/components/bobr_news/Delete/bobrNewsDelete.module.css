@@ -1,0 +1,30 @@
+.deleteButton {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #ff4d4d; /* Red color for delete */
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.deleteButton:hover {
+    color: #ff1a1a;
+}
+
+.newsCard {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.newsCard.deleting {
+    opacity: 0; /* Fade out */
+    transform: scale(0.9); /* Shrink */
+    pointer-events: none; /* Prevent interaction during animation */
+}

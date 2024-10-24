@@ -21,7 +21,7 @@ export const uploadImage = async (image: FormData): Promise<any> => {
 
 
 /* Post */
-export const getBobrNews = async (): Promise<any> => {
+export const getBobrNews = async (): Promise<IBobrNews[]> => {
     try {
         const response = await axios.get(News_URL)
         return response.data
@@ -33,5 +33,19 @@ export const getBobrNews = async (): Promise<any> => {
 
 export const createBobrNews = async (post: any): Promise<IBobrNews> => {
     const response = await axios.post(News_URL, post)
+    return response.data
+}
+
+export const updateBobrNews = async (post: IBobrNews): Promise<IBobrNews> => {
+    const response = await axios.put(`${News_URL}/${post.id}`, post)
+    return response.data
+}
+
+export const deleteBobrNews = async (id: string) => {
+    await axios.delete(`${News_URL}/${id}`)
+}
+
+export const getBobrNewsById = async(id:string):Promise<IBobrNews> =>{
+    const response = await axios.get(`${News_URL}/${id}`)
     return response.data
 }
