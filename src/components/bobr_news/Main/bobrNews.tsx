@@ -27,7 +27,7 @@ export const BobrNews = () => {
 
         // Step 2: Handle link parsing
         while ((match = linkRegex.exec(text)) !== null) {
-            const [fullMatch, linkText, url] = match;
+            const [_, linkText, url] = match;
 
             // Add the text before the match
             if (match.index > lastIndex) {
