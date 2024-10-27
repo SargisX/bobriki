@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./signUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { createUser, getUserByUsername } from "../../components/Users/users.api";
+import { createUser, getUserByUsername } from "../../components/users/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";
 import { useToastify } from "../../hooks/Notification/useToastify";
 

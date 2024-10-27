@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react"
 import styles from "./bobrNewsAdd.module.css"
 import { createBobrNews, uploadImage } from "../bobrNews.api"
-import { getAllUsers } from "../../Users/users.api"
+import { getAllUsers } from "../../users/users.api"
 import type { CreateBobrNews } from "../types";
 
 interface Props {
