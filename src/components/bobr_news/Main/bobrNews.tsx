@@ -1,64 +1,63 @@
-import { useEffect, useState, ChangeEvent } from "react";
-import { IBobrNews } from "../types";
-import { getBobrNews } from "../bobrNews.api";
+import { useEffect, useState, ChangeEvent } from "react"
+import { IBobrNews } from "../types"
+import { getBobrNews } from "../bobrNews.api"
 import styles from "./bobrNews.module.css"
-import { BobrNewsAdd } from "../Add/bobrNewsAdd";
-import { getUserRole } from "../../auth/authUtils";
-import { Link } from "react-router-dom";
-import { BobrNewsDelete } from "../Delete/bobrNewsDelete";
+import { BobrNewsAdd } from "../Add/bobrNewsAdd"
+import { getUserRole } from "../../auth/authUtils"
+import { Link } from "react-router-dom"
 
 export const BobrNews = () => {
-    const [news, setNews] = useState<IBobrNews[]>([]);
-    const [filteredNews, setFilteredNews] = useState<IBobrNews[]>([]);
-    const [addPost, setAddPost] = useState(false);
-    const [userRole, setUserRole] = useState<string>("");
-    const [sidebarVisible, setSidebarVisible] = useState(false);
-    const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
-    const [sortOption, setSortOption] = useState<string>("newest");
-    const [startX, setStartX] = useState(0);
-    const [searchQuery, setSearchQuery] = useState<string>("");
+    const [news, setNews] = useState<IBobrNews[]>([])
+    const [filteredNews, setFilteredNews] = useState<IBobrNews[]>([])
+    const [addPost, setAddPost] = useState(false)
+    const [userRole, setUserRole] = useState<string>("")
+    const [sidebarVisible, setSidebarVisible] = useState(false)
+    const [selectedUsers, setSelectedUsers] = useState<string[]>([])
+    const [sortOption, setSortOption] = useState<string>("newest")
+    const [startX, setStartX] = useState(0)
+    const [searchQuery, setSearchQuery] = useState<string>("")
 
 
     useEffect(() => {
         const fetchNews = async () => {
-            const res = await getBobrNews();
-            setNews(res);
-            setFilteredNews(res); // Initialize filtered news with the fetched data
-        };
-        fetchNews();
-        setUserRole(getUserRole());
-    }, []);
+            const res = await getBobrNews()
+            setNews(res)
+            setFilteredNews(res) // Initialize filtered news with the fetched data
+        }
+        fetchNews()
+        setUserRole(getUserRole())
+    }, [])
 
 
     const handleTouchStart = (e: React.TouchEvent) => {
-        setStartX(e.touches[0].clientX);
-    };
+        setStartX(e.touches[0].clientX)
+    }
 
     const handleTouchMove = (e: React.TouchEvent) => {
-        const currentX = e.touches[0].clientX;
-        const diffX = currentX - startX;
+        const currentX = e.touches[0].clientX
+        const diffX = currentX - startX
 
         if (diffX > 50) {
-            setSidebarVisible(true);
+            setSidebarVisible(true)
         } else if (diffX < -50) {
-            setSidebarVisible(false);
+            setSidebarVisible(false)
         }
-    };
+    }
 
     const parseAndTransformText = (text: string) => {
         // Step 1: Parse links with the specified format
-        const linkRegex = /;;(.*?)\((.*?)\)/g;
-        const parts: (string | JSX.Element)[] = [];
-        let lastIndex = 0;
-        let match;
+        const linkRegex = /(.*?)\((.*?)\)/g
+        const parts: (string | JSX.Element)[] = []
+        let lastIndex = 0
+        let match
 
         // Step 2: Handle link parsing
         while ((match = linkRegex.exec(text)) !== null) {
-            const [_, linkText, url] = match;
+            const [_, linkText, url] = match
 
             // Add the text before the match
             if (match.index > lastIndex) {
-                parts.push(text.slice(lastIndex, match.index));
+                parts.push(text.slice(lastIndex, match.index))
             }
 
             // Add the Link component
@@ -66,14 +65,14 @@ export const BobrNews = () => {
                 <Link key={url} className={styles.links} to={url} target="_blank" rel="noopener noreferrer">
                     {linkText}
                 </Link>
-            );
+            )
 
-            lastIndex = linkRegex.lastIndex;
+            lastIndex = linkRegex.lastIndex
         }
 
         // Add any remaining text after the last match
         if (lastIndex < text.length) {
-            parts.push(text.slice(lastIndex));
+            parts.push(text.slice(lastIndex))
         }
 
         // Step 3: Transform HTML tags in the final parts
@@ -82,16 +81,16 @@ export const BobrNews = () => {
                 return part
                     .replace(/<([^>]+)>/g, (_, p1) => p1.toUpperCase()) // Uppercase text inside <>
                     .replace(/<.*?>/g, '') // Remove all HTML tags
-                    .trim();
+                    .trim()
             }
-            return part; // Return the Link component as is
-        });
+            return part // Return the Link component as is
+        })
 
-        return transformedParts;
-    };
+        return transformedParts
+    }
 
     const formatDate = (timestamp: number) => {
-        const date = new Date(timestamp * 1000);
+        const date = new Date(timestamp * 1000)
         const options: Intl.DateTimeFormatOptions = {
             year: "numeric",
             month: "long",
@@ -100,19 +99,19 @@ export const BobrNews = () => {
             minute: "numeric",
             hour12: true,
             timeZone: "Asia/Yerevan",
-        };
-        return date.toLocaleString("en-US", options);
-    };
+        }
+        return date.toLocaleString("en-US", options)
+    }
 
     const toggleAddPost = () => {
-        setAddPost((prev) => !prev);
-    };
+        setAddPost((prev) => !prev)
+    }
 
     const refreshNews = async () => {
-        const updatedNews = await getBobrNews();
-        setNews(updatedNews);
-        setFilteredNews(updatedNews); // Ensure filtered news is updated too
-    };
+        const updatedNews = await getBobrNews()
+        setNews(updatedNews)
+        setFilteredNews(updatedNews) // Ensure filtered news is updated too
+    }
 
     const englishToRussian = (text: string) => {
         const transliterationMap: { [key: string]: string } = {
@@ -129,94 +128,93 @@ export const BobrNews = () => {
             U: 'У', V: 'В', W: 'В', X: 'КС', Y: 'Ы', Z: 'З',
             ' ': ' ', '.': '.', ',': ',', '!': '!', '?': '?',
             // Add any other characters you want to preserve or transliterate
-        };
+        }
 
-        let result = text;
+        let result = text
 
         // Use a loop to replace each key in the transliteration map
         for (const key of Object.keys(transliterationMap)) {
             // Create a safe regex by escaping special characters in the key
-            const escapedKey = key.replace(/[-\/\\^$.*+?()[\]{}|]/g, '\\$&'); // Escape special characters
-            const regex = new RegExp(escapedKey, 'g'); // Create regex with global flag
-            result = result.replace(regex, transliterationMap[key]);
+            const escapedKey = key.replace(/[-\/\\^$.*+?()[\]{}|]/g, '\\$&') // Escape special characters
+            const regex = new RegExp(escapedKey, 'g') // Create regex with global flag
+            result = result.replace(regex, transliterationMap[key])
         }
 
-        return result;
-    };
+        return result
+    }
 
     const handleFilterChange = () => {
-        let result = [...news];
+        let result = [...news]
 
-        // Transliterate titles and descriptions if needed
-        result = result.map(item => ({
-            ...item,
-            title: englishToRussian(item.title),
-            description: englishToRussian(item.description)
-        }));
-
-        // Transliterate the search query to match the transliterated text
-        const transliteratedQuery = englishToRussian(searchQuery.trim().toLowerCase());
+        // Transliterate the search query to match against titles/descriptions
+        const transliteratedQuery = englishToRussian(searchQuery.trim().toLowerCase())
 
         // Sorting logic
         if (sortOption === "newest") {
-            result.sort((a, b) => b.date - a.date);
+            result.sort((a, b) => b.date - a.date)
         } else if (sortOption === "oldest") {
-            result.sort((a, b) => a.date - b.date);
+            result.sort((a, b) => a.date - b.date)
         } else if (sortOption === "a-z") {
-            result.sort((a, b) => a.title.localeCompare(b.title, "ru"));
+            result.sort((a, b) => a.title.localeCompare(b.title, "ru"))
         } else if (sortOption === "z-a") {
-            result.sort((a, b) => b.title.localeCompare(a.title, "ru"));
+            result.sort((a, b) => b.title.localeCompare(a.title, "ru"))
         } else if (sortOption === "most-popular") {
-            result.sort((a, b) => b.likes.length - a.likes.length);
+            result.sort((a, b) => b.likes.length - a.likes.length)
         } else if (sortOption === "least-popular") {
-            result.sort((a, b) => a.likes.length - b.likes.length);
+            result.sort((a, b) => a.likes.length - b.likes.length)
         }
 
         // User filtering logic
         if (selectedUsers.length > 0) {
             result = result.filter((item) =>
                 item.members.some((member) => selectedUsers.includes(member))
-            );
+            )
         }
 
         // Search filtering logic
         if (transliteratedQuery) {
-            result = result.filter(
-                (item) =>
-                    item.title.toLowerCase().includes(transliteratedQuery) ||
-                    item.description.toLowerCase().includes(transliteratedQuery)
-            );
+            result = result.filter((item) => {
+                const title = englishToRussian(item.title.toLowerCase())
+                const description = englishToRussian(item.description.toLowerCase())
+
+                return (
+                    title.includes(transliteratedQuery) ||
+                    description.includes(transliteratedQuery)
+                )
+            })
         }
 
-        setFilteredNews(result);
-    };
-
+        setFilteredNews(result)
+    }
 
     useEffect(() => {
-        handleFilterChange();
-    }, [news, sortOption, selectedUsers]);
+        handleFilterChange()
+    }, [news, sortOption, selectedUsers, searchQuery])
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setSortOption(e.target.value);
-    };
+        setSortOption(e.target.value)
+    }
 
     const handleUserSelection = (username: string) => {
         setSelectedUsers((prev) =>
             prev.includes(username)
                 ? prev.filter((user) => user !== username)
                 : [...prev, username]
-        );
-    };
+        )
+    }
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(e.target.value) // Update search query state
+    }
 
-    const uniqueAuthors = [...new Set(news.flatMap((item) => item.members))];
+    const uniqueAuthors = [...new Set(news.flatMap((item) => item.members))]
 
     const resetFilters = () => {
-        setSearchQuery("");
-        setSortOption("newest");
-        setSelectedUsers([]);
-        setSidebarVisible(false);
-        setFilteredNews(news); // Reset filtered list to the original news
-    };
+        setSearchQuery("")
+        setSortOption("newest")
+        setSelectedUsers([])
+        setSidebarVisible(false)
+        setFilteredNews(news) // Reset filtered list to the original news
+    }
 
     return (
         <div className={styles.main}>
@@ -234,7 +232,7 @@ export const BobrNews = () => {
                                     placeholder="Search title or description..."
                                     className={styles.searchInput}
                                     value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onChange={handleSearchChange} // Use the new handler
                                 />
 
                                 <div className={styles.filtersContainer}>
@@ -272,7 +270,7 @@ export const BobrNews = () => {
                             <div className={styles.moderator}>
                                 {(userRole === "admin" || userRole === "bobrnews_Moderator") && (
                                     <div className={styles.AddNewBtn}>
-                                        <button onClick={toggleAddPost}>ADD</button>
+                                        <button onClick={toggleAddPost}>Add new BobrNews🐹📰</button>
                                     </div>
                                 )}
                             </div>
@@ -287,14 +285,7 @@ export const BobrNews = () => {
                             <div className={styles.newsList}>
                                 {filteredNews.map((item) => (
                                     <div key={item.id} className={styles.newsCard}>
-                                        {(userRole === "admin" || userRole === "bobrnews_Moderator") && (
-                                            <div className={styles.changeContainer}>
-                                                <BobrNewsDelete
-                                                    id={item.id}
-                                                    onDelete={refreshNews} // Ensure list refreshes after deletion
-                                                />
-                                            </div>
-                                        )}
+
                                         <div className={styles.newsImageContainer}>
                                             <img
                                                 src={item.photo}
@@ -327,4 +318,4 @@ export const BobrNews = () => {
             }
         </div>
     )
-};
+}
