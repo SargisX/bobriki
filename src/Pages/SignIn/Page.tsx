@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isSessionValid, saveLoginSession } from "../../components/auth/authUtils";
 import styles from "./signIn.module.css";
-import { getUserByUsername } from "../../components/users/users.api";
+import { getUserByUsername } from "../../components/users_comp/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";
 import { useToastify } from "../../hooks/Notification/useToastify";
 

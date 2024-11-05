@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styles from './terminal.module.css'
-import { deleteUser, getAllUsers, getUserById, updateUser } from '../users/users.api'
+import { deleteUser, getAllUsers, getUserById, updateUser } from '../users_comp/users.api'
 import { useNavigate } from 'react-router-dom'
 import { clearSession } from '../auth/authUtils'
 

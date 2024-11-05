@@ -15,12 +15,12 @@ import SignUp from "./Pages/SignUp/Page"
 import { useEffect, useState } from "react"
 import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/auth/authUtils.ts"
 import { Admin } from "./Pages/Admin/Page.tsx"
-import { checkUserById } from "./components/users/users.api.ts"
+import { checkUserById } from "./components/users_comp/users.api.ts"
 import { useNotifications } from "./hooks/Notification/useNotification.ts"
 import { BobrNews } from "./components/bobr_news/Main/bobrNews.tsx"
 import { Profile } from "./components/profile/profile.tsx"
 import { Tickets } from "./Pages/Tickets/Page.tsx"
-import { UserList } from "./components/Users/userList.tsx"
+import { UserList } from "./components/users_comp/userList.tsx"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
