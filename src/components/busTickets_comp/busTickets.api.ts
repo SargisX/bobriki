@@ -1,12 +1,6 @@
 // busTickets.api.ts
 import axios from "axios";
- interface Ticket{
-    id:string
-    value:string
-    userId:string
-}
-
- type AddTicket = Omit<Ticket,'id'>
+import { AddTicket, Ticket } from "./types";
 
 const URL = 'https://your-api-url.com'; // Make sure to set your URL here
 

@@ -1,4 +1,4 @@
-import { BusTickets } from "../../components/busTickets/busTickets.tsx";
+import { BusTickets } from "../../components/busTickets_comp/busTickets"
 
 export const Tickets = () => {
     return (
