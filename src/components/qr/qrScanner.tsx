@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
-import jsQR from 'jsqr';
-import { WebcamCapture } from "./webcam";
-import styles from './qrScanner.module.css';
-import { getTickets } from "../BusTickets/busTickets.api";
-import { Ticket, AddTicket } from "../BusTickets/types";
-import { addTicket } from "../BusTickets/busTickets.api";
-import { getCurrentSession } from "../auth/authUtils";
-import QRGenerator from "./qrGenerator";
+import React, { useEffect, useState } from "react"; // Importing React and hooks
+import jsQR from 'jsqr'; // Importing the jsQR library for QR code scanning
+import { WebcamCapture } from "./webcam"; // Importing a component for capturing webcam feed
+import styles from './qrScanner.module.css'; // Importing CSS styles specific to the QR scanner
+// Importing API functions
+import { getCurrentSession } from "../auth/authUtils"; // Importing function to get user session
+import QRGenerator from "./qrGenerator"; // Importing QR code generator component
 
+ interface Ticket{
+    id:string
+    value:string
+    userId:string
+}
+
+ type AddTicket = Omit<Ticket,'id'>
 export const QRScanner: React.FC = () => {
     const [qrCode, setQrCode] = useState<string>("");
     const [isScanning, setIsScanning] = useState<boolean>(true);
@@ -53,15 +58,15 @@ export const QRScanner: React.FC = () => {
                     userId
                 };
 
-                try {
-                    const savedTicket = await addTicket(newTicket);
-                    console.log("Ticket saved successfully:", savedTicket);
-                    alert("Ticket saved successfully!");
-                    setTickets([...tickets, savedTicket]);
-                } catch (error) {
-                    console.error("Failed to save ticket:", error);
-                    alert("Failed to save ticket.");
-                }
+                // try {
+                //     const savedTicket = await addTicket(newTicket);
+                //     console.log("Ticket saved successfully:", savedTicket);
+                //     alert("Ticket saved successfully!");
+                //     setTickets([...tickets, savedTicket]);
+                // } catch (error) {
+                //     console.error("Failed to save ticket:", error);
+                //     alert("Failed to save ticket.");
+                // }
             } else {
                 alert("Ticket with this value already exists.");
             }
@@ -69,13 +74,13 @@ export const QRScanner: React.FC = () => {
     }
 
     useEffect(() => {
-        getTickets()
-            .then(res => {
-                setTickets(res);
-            })
-            .catch(error => {
-                console.error("Failed to fetch tickets:", error);
-            })
+        // getTickets()
+        //     .then(res => {
+        //         setTickets(res);
+        //     })
+        //     .catch(error => {
+        //         console.error("Failed to fetch tickets:", error);
+        //     })
         const session = getCurrentSession();
         if (session) {
             setUserId(session.userId);
