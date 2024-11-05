@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import { useState } from "react"
 import styles from "./Navbar.module.css"
-import { clearSession } from "../auth/authUtils"
+import { clearSession } from "../users/auth/authUtils"
 
 interface NavbarProps {
   isLoggedIn: boolean

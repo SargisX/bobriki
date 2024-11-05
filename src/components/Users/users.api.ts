@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { User, UserAdd } from "../auth/types"
+import type { User, UserAdd } from "./types"
 
 const API_URL = "https://6713e4de690bf212c7601eb2.mockapi.io/bobr_V1/users"
 

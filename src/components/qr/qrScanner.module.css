@@ -1,0 +1,62 @@
+/* qrScanner.module.css */
+
+.qrScannerContainer {
+    position: relative; /* Ensure the container is positioned relative */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center the content */
+}
+
+.qrCodeText {
+    margin-top: 20px; /* Add some space above the QR code text */
+    font-size: 0.5rem; /* Adjust font size */
+    color: #333; /* Set text color */
+    text-align: center; /* Center align the text */
+    overflow-wrap: break-word; /* Ensure long words break to the next line */
+    word-wrap: break-word; /* Legacy property for word wrapping */
+    white-space: normal; /* Allow text to wrap normally */
+    background: rgba(255, 255, 255, 0.8); /* Optional: add a background for better readability */
+    padding: 10px;
+    border-radius: 5px; /* Optional: add border radius */
+    max-width: 90%; /* Set a maximum width for the text container */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow for depth */
+    word-break: break-all; /* Break the text at any character if necessary */
+}
+
+.btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scanNewButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.scanNewButton:hover {
+    background-color: #0056b3;
+}
+
+.saveButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #00c000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.saveButton:hover {
+    background-color: #007c00;
+}

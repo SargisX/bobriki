@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { isSessionValid, saveLoginSession } from "../../components/auth/authUtils";
+import { isSessionValid, saveLoginSession } from "../../components/users/auth/authUtils";
 import styles from "./signIn.module.css";
 import { getUserByUsername } from "../../components/users/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";

@@ -13,12 +13,14 @@ import { FreeSitePage } from "./components/freeSites/freeSitePage"
 import SignIn from "./Pages/SignIn/Page"
 import SignUp from "./Pages/SignUp/Page"
 import { useEffect, useState } from "react"
-import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/auth/authUtils"
+import { isSessionValid, getUserRole, clearSession, getCurrentSession } from "./components/users/auth/authUtils.ts"
 import { Admin } from "./Pages/Admin/Page.tsx"
 import { UserList } from "./components/users/userList.tsx"
 import { checkUserById } from "./components/users/users.api.ts"
 import { useNotifications } from "./hooks/Notification/useNotification.ts"
 import { BobrNews } from "./components/bobr_news/Main/bobrNews.tsx"
+import { Profile } from "./components/profile/profile.tsx"
+import { Tickets } from "./Pages/Tickets/Page.tsx"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -80,6 +82,8 @@ function App() {
                 <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
                 <Route path="/users" element={isLoggedIn ? <UserList /> : <Navigate to="/signin" />} />
                 <Route path="/bobrnews" element={isLoggedIn ? <BobrNews /> : <Navigate to="/signin" />} />
+                <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/signin" />} />
+                <Route path="/tickets" element={isLoggedIn ? <Tickets /> : <Navigate to="/signin" />} />
               </>
             )
           }

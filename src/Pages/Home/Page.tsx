@@ -54,6 +54,12 @@ export const Home: React.FC<Props> = ({ isLoggedIn }) => {
               <h3 className={styles.cardText}>Schedule</h3>
             </div>
           </Link>
+          <Link to="/tickets" className={styles.link}>
+            <div ref={el => (cardRefs.current[1] = el)} className={`${styles.card} ${styles.hidden}`}>
+              <FaBook className={styles.icon} />
+              <h3 className={styles.cardText}>Bus Tickets</h3>
+            </div>
+          </Link>
           <Link to="/users" className={styles.link}>
             <div ref={el => (cardRefs.current[3] = el)} className={`${styles.card} ${styles.hidden}`}>
             <FaUser className={styles.icon} />
@@ -64,12 +70,6 @@ export const Home: React.FC<Props> = ({ isLoggedIn }) => {
             <div ref={el => (cardRefs.current[2] = el)} className={`${styles.card} ${styles.hidden}`}>
               <FaCog className={styles.icon} />
               <h3 className={styles.cardText}>Our Services</h3>
-            </div>
-          </Link>
-          <Link to="/about" className={styles.link}>
-            <div ref={el => (cardRefs.current[1] = el)} className={`${styles.card} ${styles.hidden}`}>
-              <FaBook className={styles.icon} />
-              <h3 className={styles.cardText}>About Us</h3>
             </div>
           </Link>
         </div>
