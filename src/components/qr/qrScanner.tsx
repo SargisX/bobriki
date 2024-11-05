@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react"; // Importing React and hooks
-import jsQR from 'jsqr'; // Importing the jsQR library for QR code scanning
-import { WebcamCapture } from "./webcam"; // Importing a component for capturing webcam feed
-import styles from './qrScanner.module.css'; // Importing CSS styles specific to the QR scanner
-// Importing API functions
-import { getCurrentSession } from "../auth/authUtils"; // Importing function to get user session
-import QRGenerator from "./qrGenerator"; // Importing QR code generator component
+// QRScanner.tsx
+import React, { useEffect, useState } from "react";
+import jsQR from 'jsqr';
+import { WebcamCapture } from "./webcam";
+import styles from './qrScanner.module.css';
+import { QRGenerator } from "./qrGenerator";
 import { AddTicket, Ticket } from "../busTickets_comp/types";
 import { addTicket, getTickets } from "../busTickets_comp/busTickets.api";
+import axios from "axios";
+import { getCurrentSession } from "../users_comp/auth/authUtils";
 
+interface QRScannerProps {
+    onSaveSuccess: () => void; // Prop to receive the toggle function
+}
 
-export const QRScanner: React.FC = () => {
+export const QRScanner: React.FC<QRScannerProps> = ({ onSaveSuccess }) => {
     const [qrCode, setQrCode] = useState<string>("");
     const [isScanning, setIsScanning] = useState<boolean>(true);
     const [tickets, setTickets] = useState<Ticket[]>([]);
-    const [userId, setUserId] = useState<string>("")
+    const [userId, setUserId] = useState<string>("");
 
     const handleScan = (imageSrc: string | null) => {
         if (imageSrc) {
@@ -34,40 +38,61 @@ export const QRScanner: React.FC = () => {
                         setIsScanning(false);
                     }
                 }
-            }
+            };
         }
-    }
+    };
 
     const handleScanNew = () => {
         setQrCode("");
         setIsScanning(true);
-    }
+    };
 
     const handleSave = async () => {
         if (qrCode) {
+            try {
+                const existingTickets = await getTickets();
+                // Filter tickets by userId and QR code value
+                const existingTicket = existingTickets.find(ticket => ticket.value === qrCode && ticket.userId === userId);
+                
+                if (!existingTicket) {
+                    const newTicket: AddTicket = {
+                        value: qrCode.trim(),
+                        userId
+                    };
 
-            const existingTicket = tickets.find(ticket => ticket.value === qrCode);
-            if (!existingTicket) {
-
-                const newTicket: AddTicket = {
-                    value: qrCode,
-                    userId
-                };
-
-                try {
+                    console.log("Saving ticket with value:", newTicket.value);
                     const savedTicket = await addTicket(newTicket);
                     console.log("Ticket saved successfully:", savedTicket);
                     alert("Ticket saved successfully!");
-                    setTickets([...tickets, savedTicket]);
-                } catch (error) {
-                    console.error("Failed to save ticket:", error);
-                    alert("Failed to save ticket.");
+
+                    // Call the onSaveSuccess prop to close the scanner
+                    onSaveSuccess();
+
+                    setTickets(prevTickets => [...prevTickets, savedTicket]);
+                } else {
+                    alert("Ticket with this value already exists for this user.");
                 }
-            } else {
-                alert("Ticket with this value already exists.");
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response) {
+                    console.error("Failed to save ticket:", error.response.data);
+                } else {
+                    console.error("Failed to save ticket:", error);
+                }
+                alert("Failed to save ticket.");
             }
         }
-    }
+    };
+
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                handleScan(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
     useEffect(() => {
         getTickets()
@@ -76,7 +101,7 @@ export const QRScanner: React.FC = () => {
             })
             .catch(error => {
                 console.error("Failed to fetch tickets:", error);
-            })
+            });
         const session = getCurrentSession();
         if (session) {
             setUserId(session.userId);
@@ -86,7 +111,15 @@ export const QRScanner: React.FC = () => {
     return (
         <div className={styles.qrScannerContainer}>
             {isScanning ? (
-                <WebcamCapture onScan={handleScan} />
+                <>
+                    <WebcamCapture onScan={handleScan} />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileUpload}
+                        className={styles.fileInput}
+                    />
+                </>
             ) : (
                 <div className={styles.btns}>
                     <QRGenerator value={qrCode} />
@@ -100,4 +133,4 @@ export const QRScanner: React.FC = () => {
             )}
         </div>
     );
-}
+};

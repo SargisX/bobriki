@@ -1,7 +1,7 @@
 export interface Ticket{
-    id:string
+    objectId:string
     value:string
     userId:string
 }
 
-export type AddTicket = Omit<Ticket,'id'>
+export type AddTicket = Omit<Ticket,'objectId'>

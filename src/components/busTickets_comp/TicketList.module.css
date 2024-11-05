@@ -1,0 +1,42 @@
+/* TicketList.module.css */
+
+/* General button styles */
+.deleteButton {
+    width: calc(100% - 40px);
+    background-color: #ff4d4d; /* Light red background */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 8px 12px; /* Padding for button size */
+    margin: 0 20px;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+    font-size: 14px; /* Font size */
+    right: 0; /* Align to the right */
+    top: 0; /* Align to the top */
+}
+
+/* Hover effect */
+.deleteButton:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}
+
+/* Fullscreen QR styles */
+.fullScreenQRContainer {
+    position: fixed; /* Fixed positioning for fullscreen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white; /* White background */
+    display: flex; /* Flexbox to center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    z-index: 9999; /* Ensure it appears above other elements */
+}
+
+/* Optional focus styles for buttons */
+.deleteButton:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.5); /* Custom focus outline */
+}

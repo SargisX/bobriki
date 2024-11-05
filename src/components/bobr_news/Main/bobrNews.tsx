@@ -3,8 +3,8 @@ import { IBobrNews } from "../types"
 import { getBobrNews } from "../bobrNews.api"
 import styles from "./bobrNews.module.css"
 import { BobrNewsAdd } from "../Add/bobrNewsAdd"
-import { getUserRole } from "../../auth/authUtils"
 import { Link } from "react-router-dom"
+import { getUserRole } from "../../users_comp/auth/authUtils"
 
 export const BobrNews = () => {
     const [news, setNews] = useState<IBobrNews[]>([])
