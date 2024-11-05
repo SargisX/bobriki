@@ -4,7 +4,7 @@ import jsQR from 'jsqr';
 import { WebcamCapture } from "./webcam";
 import styles from './qrScanner.module.css';
 import { QRGenerator } from "./qrGenerator";
-import { AddTicket, Ticket } from "../busTickets_comp/types";
+import { AddTicket } from "../busTickets_comp/types";
 import { addTicket, getTickets } from "../busTickets_comp/busTickets.api";
 import axios from "axios";
 import { getCurrentSession } from "../users_comp/auth/authUtils";
@@ -16,7 +16,6 @@ interface QRScannerProps {
 export const QRScanner: React.FC<QRScannerProps> = ({ onSaveSuccess }) => {
     const [qrCode, setQrCode] = useState<string>("");
     const [isScanning, setIsScanning] = useState<boolean>(true);
-    const [tickets, setTickets] = useState<Ticket[]>([]);
     const [userId, setUserId] = useState<string>("");
 
     const handleScan = (imageSrc: string | null) => {
@@ -67,8 +66,6 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onSaveSuccess }) => {
 
                     // Call the onSaveSuccess prop to close the scanner
                     onSaveSuccess();
-
-                    setTickets(prevTickets => [...prevTickets, savedTicket]);
                 } else {
                     alert("Ticket with this value already exists for this user.");
                 }
@@ -96,9 +93,6 @@ export const QRScanner: React.FC<QRScannerProps> = ({ onSaveSuccess }) => {
 
     useEffect(() => {
         getTickets()
-            .then(res => {
-                setTickets(res);
-            })
             .catch(error => {
                 console.error("Failed to fetch tickets:", error);
             });
