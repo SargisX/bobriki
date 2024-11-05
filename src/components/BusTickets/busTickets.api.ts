@@ -1,7 +1,7 @@
 import axios from "axios"
-import { Ticket, AddTicket } from "./types"
+import { AddTicket, Ticket } from "./types"
 
-const URL = 'https://bobriki.free.beeceptor.com'
+const URL = ''
 
 export const getTickets = async (): Promise<Ticket[]> => {
     const response = await axios.get(URL)
