@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {QRScanner} from '../qr/qrScanner';
 import styles from './busTickets.module.css';
 

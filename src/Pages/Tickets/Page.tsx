@@ -1,4 +1,4 @@
-import { BusTickets } from "../../components/BusTickets/busTickets"
+import { BusTickets } from "../../components/busTickets/busTickets"
 
 export const Tickets = () => {
     return (
