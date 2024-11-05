@@ -5,8 +5,8 @@ import styles from './qrScanner.module.css'; // Importing CSS styles specific to
 // Importing API functions
 import { getCurrentSession } from "../auth/authUtils"; // Importing function to get user session
 import QRGenerator from "./qrGenerator"; // Importing QR code generator component
-import { addTicket, getTickets } from "../busTickets/busTickets.api";
-import { AddTicket, Ticket } from "../busTickets/types";
+import { AddTicket, Ticket } from "../busTickets_comp/types";
+import { addTicket, getTickets } from "../busTickets_comp/busTickets.api";
 
 
 export const QRScanner: React.FC = () => {
