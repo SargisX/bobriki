@@ -5,7 +5,7 @@ import styles from './qrScanner.module.css';
 import { getTickets } from "../BusTickets/busTickets.api";
 import { Ticket, AddTicket } from "../BusTickets/types";
 import { addTicket } from "../BusTickets/busTickets.api";
-import { getCurrentSession } from "../users/auth/authUtils";
+import { getCurrentSession } from "../auth/authUtils";
 import QRGenerator from "./qrGenerator";
 
 export const QRScanner: React.FC = () => {

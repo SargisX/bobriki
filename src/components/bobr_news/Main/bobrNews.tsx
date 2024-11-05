@@ -3,7 +3,7 @@ import { IBobrNews } from "../types"
 import { getBobrNews } from "../bobrNews.api"
 import styles from "./bobrNews.module.css"
 import { BobrNewsAdd } from "../Add/bobrNewsAdd"
-import { getUserRole } from "../../users/auth/authUtils"
+import { getUserRole } from "../../auth/authUtils"
 import { Link } from "react-router-dom"
 
 export const BobrNews = () => {

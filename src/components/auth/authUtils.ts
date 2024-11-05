@@ -1,4 +1,4 @@
-import type { SignUpUser, User } from "../types"
+import type { SignUpUser, User } from "../Users/types"
 
 const SESSION_KEY = "user_session"
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Profile.module.css"; // CSS for styling
 import { getUserById } from "../users/users.api";
-import { getCurrentSession } from "../users/auth/authUtils";
+import { getCurrentSession } from "../auth/authUtils";
 
 // User Type Interface
 export interface User {
