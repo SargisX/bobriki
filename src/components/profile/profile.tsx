@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Profile.module.css"; // CSS for styling
+import styles from "./profile.module.css"; // CSS for styling
 import { getUserById } from "../users_comp/users.api";
 import { getCurrentSession } from "../auth/authUtils";
 
