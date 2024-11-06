@@ -73,7 +73,7 @@ export const TicketList: React.FC = () => {
         <div>
             {tickets.length > 0 ? (
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    {tickets.map((ticket,index) => (
+                    {tickets.map(ticket => (
                         <li key={ticket.objectId} style={{ marginBottom: '10px', position: 'relative' }}>
                             <div
                                 id={`qr-${ticket.objectId}`}
@@ -81,7 +81,6 @@ export const TicketList: React.FC = () => {
                                 onClick={() => handleQRClick(ticket)}
                                 style={{ cursor: 'pointer' }} // Indicate clickable area
                             >
-                                <p>QR: {index+1}</p>
                                 <QRGenerator value={ticket.value} isFullScreen={isFullScreen} />
                             </div>
                             <button 
