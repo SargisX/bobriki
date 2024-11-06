@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./profile.module.css";
-import { getUserById, updateUser, uploadProfilePicture } from "../users_comp/users.api"; 
+import { getUserById, updateUser, uploadProfilePicture } from "../users_comp/users.api";
 import { getCurrentSession } from "../users_comp/auth/authUtils";
 import { UpdateProfile, User } from "../users_comp/types";
 import { EditProfile } from "./editProfile";
@@ -8,7 +8,7 @@ interface ProfileProps {
   user: User | null;
   setUser: (user: User | null) => void;
 }
-export const Profile = ({user,setUser}:ProfileProps) => {
+export const Profile = ({ user, setUser }: ProfileProps) => {
   const [isUploading, setIsUploading] = useState(false); // Track uploading state
   const fileInputRef = useRef<HTMLInputElement>(null); // Ref for the file input
 
@@ -46,32 +46,32 @@ export const Profile = ({user,setUser}:ProfileProps) => {
   };
 
   const handleProfilePictureChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  if (!e.target.files) return;
-  const file = e.target.files[0];
-  if (!file) return;
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  setIsUploading(true);
-  const formData = new FormData();
-  formData.append("file", file);
+    setIsUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
 
-  try {
-    const uploadedData = await uploadProfilePicture(formData);
-    if (uploadedData?.url) {
-      const updatedUser = { ...user, profilePicture: uploadedData.url };
-      setUser(updatedUser);
-      await updateUser(updatedUser);
-      alert("Profile picture updated successfully!");
-    } else {
-      alert("Failed to upload profile picture.");
+    try {
+      const uploadedData = await uploadProfilePicture(formData);
+      if (uploadedData?.url) {
+        const updatedUser = { ...user, profilePicture: uploadedData.url };
+        setUser(updatedUser);
+        await updateUser(updatedUser);
+        alert("Profile picture updated successfully!");
+      } else {
+        alert("Failed to upload profile picture.");
+      }
+    } catch (error) {
+      console.error("Error uploading profile picture:", error);
+      alert("Error uploading profile picture. Please try again.");
+    } finally {
+      setIsUploading(false);
     }
-  } catch (error) {
-    console.error("Error uploading profile picture:", error);
-    alert("Error uploading profile picture. Please try again.");
-  } finally {
-    setIsUploading(false);
-  }
-};
-  
+  };
+
 
   return (
     <div className={styles.mainContainer}>
@@ -84,7 +84,6 @@ export const Profile = ({user,setUser}:ProfileProps) => {
               className={styles.profileImage}
               onDoubleClick={handleDoubleClickProfileImage} // Attach the double-click handler
             />
-            {isUploading && <div className={styles.uploadingText}>Uploading...</div>} {/* Show uploading state */}
             <div className={styles.stats}>
               <div>
                 <strong>10</strong> Posts
@@ -97,6 +96,7 @@ export const Profile = ({user,setUser}:ProfileProps) => {
               </div>
             </div>
           </div>
+          {isUploading && <div className={styles.uploadingText}>Uploading...</div>} {/* Show uploading state */}
 
           <div className={styles.profileInfo}>
             <div className={styles.username}>{user.nickname}</div>
