@@ -73,8 +73,9 @@ export const TicketList: React.FC = () => {
         <div>
             {tickets.length > 0 ? (
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    {tickets.map(ticket => (
+                    {tickets.map((ticket,index) => (
                         <li key={ticket.objectId} style={{ marginBottom: '10px', position: 'relative' }}>
+                            <h2>QR: {index+1}</h2>
                             <div
                                 id={`qr-${ticket.objectId}`}
                                 className={isFullScreen ? styles.fullScreenQRContainer : ''}

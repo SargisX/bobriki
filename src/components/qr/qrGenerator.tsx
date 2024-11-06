@@ -11,7 +11,6 @@ export const QRGenerator: React.FC<QRGeneratorProps> = ({ value, isFullScreen })
     const size = isFullScreen ? 350 : 256;
     return (
         <div className={styles.qrGeneratorContainer}>
-            <h2>QR Code Generator</h2>
             {value && ( // Only render if value is provided
                 <div className={styles.qrCodeContainer}>
                     <QRCodeSVG value={value} size={size} /> {/* Generate QR code */}

@@ -6,12 +6,23 @@ export const useNotifications = () => {
     );
 
     const requestPermission = async () => {
+        // Detect if the user is on iOS
+        const isIOS = /iPad|iPhone|iPod/i.test(navigator.userAgent);
+    
+        // Skip requesting permission if on iOS
+        if (isIOS) {
+            console.log("Notifications are not supported on iOS PWAs.");
+            return;
+        }
+    
+        // Request permission for other platforms
         const newPermission = await Notification.requestPermission();
         setPermission(newPermission);
         if (newPermission !== 'granted') {
             alert('Please enable notifications to receive updates!');
         }
     };
+    
 
     const showLocalNotification = (title: string, options: NotificationOptions) => {
         if (permission === 'granted' && navigator.serviceWorker.controller) {
