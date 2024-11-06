@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #1e293b, #0f172a);
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem 1rem .5rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,20 +14,20 @@
   transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
+  flex-grow: 1;
+  /* This ensures the logo won't get pushed to the center */
 }
 
 .logo:hover {
   color: #38bdf8;
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
-
 
 .menuIcon {
   display: none;
@@ -117,6 +117,11 @@
 }
 
 
+.profilePicture {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+}
+
 
 @media (max-width: 768px) {
   .menuIcon {
@@ -163,10 +168,28 @@
     font-size: 1.2rem;
     padding: 1rem;
   }
+
+  .logo{
+    margin-left: .2rem;
+  }
+
+  .logo:hover {
+    color: #38bdf8;
+    transform: scale(1.05);
+  }
+
+  .profilePicture {
+    width: 50px;
+    margin-right: 1.5rem;
+  }
 }
 
 
 @media (min-width: 769px) {
+  .logo {
+    margin-left: 1rem;
+  }
+
   .menuIcon {
     display: none;
   }
@@ -175,5 +198,11 @@
     display: flex;
     transform: none;
     opacity: 1;
+  }
+
+  .profilePicture {
+    width: 40px;
+    height: auto;
+    object-fit:cover;
   }
 }

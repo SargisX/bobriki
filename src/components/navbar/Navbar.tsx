@@ -1,17 +1,20 @@
 import { Link, NavLink } from "react-router-dom"
-import { useState } from "react"
+import {  useState } from "react"
 import styles from "./Navbar.module.css"
 import { clearSession } from "../users_comp/auth/authUtils"
+import { User } from "../users_comp/types"
 
 interface NavbarProps {
   isLoggedIn: boolean
   role: string | null
   setIsLoggedIn: (value: boolean) => void
   setRole: (role: string | null) => void
+  user:User|null
 }
 
-export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: NavbarProps) {
+export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole,user }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
 
   const toggleMenu = () => setMenuOpen((prev) => !prev)
   const closeMenu = () => setMenuOpen(false)
@@ -24,9 +27,11 @@ export default function Navbar({ isLoggedIn, role, setIsLoggedIn, setRole }: Nav
     closeMenu()
   }
 
+
   return (
     <header>
       <nav className={styles.navbar}>
+      {isLoggedIn &&<Link to="/profile"><img className={styles.profilePicture} src={user?.profilePicture} alt={user?.username+"'s picture"} /></Link>}
         <Link to="/" className={styles.logo}>Bobrik</Link>
         <div className={styles.menuIcon} onClick={toggleMenu}>
           <span className={`${styles.menuBar} ${menuOpen ? styles.menuOpen : ""}`}></span>

@@ -6,7 +6,7 @@ import { BobrNewsAdd } from "../Add/bobrNewsAdd"
 import { Link } from "react-router-dom"
 import { getUserRole } from "../../users_comp/auth/authUtils"
 
-export const BobrNews = () => {
+export const News = () => {
     const [news, setNews] = useState<IBobrNews[]>([])
     const [filteredNews, setFilteredNews] = useState<IBobrNews[]>([])
     const [addPost, setAddPost] = useState(false)

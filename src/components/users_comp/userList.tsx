@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './userList.module.css';
 import { getAllUsers } from './users.api';
 import { User } from './types';
@@ -24,7 +25,6 @@ export const UserList = () => {
     // Check if there's an admin user
     const adminUser = users.find(user => user.role === 'admin');
 
-
     return (
         <div className={styles.main}>
             <div className={styles.userListContainer}>
@@ -48,19 +48,29 @@ export const UserList = () => {
                     <div className={styles.userList}>
                         {filteredUsers.map((user) => (
                             user.role !== 'admin' && (
-                                <div key={user.id} className={styles.card}>
-                                    <h3 className={styles.username}>{user.username}</h3>
-                                    <p className={styles.password}>Password: {'*'.repeat(8)}</p>
-                                    <p className={styles.role}>Role:
-                                        {
-                                            user.role
-                                                .split("_")
-                                                .map(x => x.charAt(0).toUpperCase() + x.slice(1))
-                                                .join(" ")
-                                        }
-                                    </p>
-                                    <span className={styles.index}>#{Number(user.id) - 1}</span>
-                                </div>
+                                <Link key={user.id} to={`/profile/${user.id}`} className={styles.cardLink}>
+                                    <div className={styles.card}>
+                                        <div className={styles.cardHeader}>
+                                            <img
+                                                src={user.profilePicture}
+                                                alt={user.username}
+                                                className={styles.profileImage}
+                                            />
+                                        </div>
+                                        <div className={styles.cardContent}>
+                                            <h3 className={styles.username}>{user.nickname}</h3>
+                                            <p className={styles.role}>Role:
+                                                {
+                                                    user.role
+                                                        .split("_")
+                                                        .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+                                                        .join(" ")
+                                                }
+                                            </p>
+                                            <span className={styles.index}>#{Number(user.id) - 1}</span>
+                                        </div>
+                                    </div>
+                                </Link>
                             )
                         ))}
                     </div>

@@ -1,79 +1,70 @@
 import { useEffect, useState } from "react";
-import styles from "./profile.module.css"; // CSS for styling
-import { getUserById } from "../users_comp/users.api";
+import styles from "./profile.module.css";
+import { getUserById, updateUser } from "../users_comp/users.api"; // Assuming getUserById API exists
 import { getCurrentSession } from "../users_comp/auth/authUtils";
+import { UpdateProfile, User } from "../users_comp/types";
+import { EditProfile } from "./editProfile";
 
-// User Type Interface
-export interface User {
-  id: string;
-  username: string;
-  password: string;
-  role: string;
-}
-
-// Component Logic
 export const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [visiblePosts, setVisiblePosts] = useState<number>(30); // Control post visibility
-  const [posts, setPosts] = useState<string[]>([]); // Store post URLs
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const id = getCurrentSession()?.userId
-        const userData = await getUserById(`${id}`); // Replace with the actual user ID
+      const id = getCurrentSession()?.userId;
+      if (id) {
+        const userData = await getUserById(`${id}`);
         if (userData) {
           setUser(userData);
-          // Simulate post data for now (Replace with actual posts fetching logic)
-          setPosts(Array(100).fill("https://via.placeholder.com/150")); // 50 Placeholder images
         }
-      } catch (error) {
-        console.error("Failed to fetch user:", error);
       }
     };
-
     fetchUser();
   }, []);
 
-  const handleShowMore = () => {
-    setVisiblePosts((prev) => prev + 30); // Show 30 more posts on click
+  if (!user) return <div className={styles.mainContainer}><h3 style={{ color: 'white' }}>Loading...</h3></div>;
+
+  const handleSaveChanges = (updatedUser: UpdateProfile) => {
+    const updatedUserData: User = {
+      ...user,
+      ...updatedUser, // Spread the updated fields to the user
+    };
+
+    updateUser(updatedUserData)
+    setUser(updatedUserData); // Update user state with the new data
   };
 
-  if (!user) return <div>Loading...</div>;
-
   return (
-    <div className={styles.profileContainer}>
-      <div className={styles.header}>
-        <img
-          src="https://via.placeholder.com/100" // Placeholder profile image
-          alt={user.username}
-          className={styles.profileImage}
-        />
-        <div className={styles.stats}>
-          <div>
-            <strong>{posts.length}</strong> Posts
+    <div className={styles.mainContainer}>
+      <div className={styles.profileContainer}>
+        <div className={styles.header}>
+          <div className={styles.profileSection}>
+            <img
+              src={user.profilePicture}
+              alt={user.username}
+              className={styles.profileImage}
+            />
+            <div className={styles.stats}>
+              <div>
+                <strong>10</strong> Posts
+              </div>
+              <div>
+                <strong>10</strong> Followers
+              </div>
+              <div>
+                <strong>10</strong> Following
+              </div>
+            </div>
           </div>
-          <div>
-            <strong>100</strong> Followers
-          </div>
-          <div>
-            <strong>80</strong> Following
+
+          <div className={styles.profileInfo}>
+            <div className={styles.username}>{user.nickname}</div>
+            <div className={styles.bio}>{user.bio}</div>
           </div>
         </div>
-        <button className={styles.followButton}>Follow</button>
-      </div>
 
-      <div className={styles.postGrid}>
-        {posts.slice(0, visiblePosts).map((post, index) => (
-          <img key={index} src={post} alt={`Post ${index + 1}`} className={styles.postImage} />
-        ))}
+        {/* Pass the save callback to EditProfile */}
+        <EditProfile user={user} onSave={handleSaveChanges} />
       </div>
-
-      {visiblePosts < posts.length && (
-        <button className={styles.showMoreButton} onClick={handleShowMore}>
-          Show More
-        </button>
-      )}
     </div>
   );
 };
