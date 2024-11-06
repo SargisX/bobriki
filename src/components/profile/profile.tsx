@@ -54,11 +54,11 @@ export const Profile = () => {
         try {
           // Send the new profile picture to the server
           const uploadedData = await uploadProfilePicture(formData); // Pass FormData
-          alert(uploadedData)
           if (uploadedData?.url) {
             // Update the user state with the new profile picture URL
             const updatedUser: User = { ...user, profilePicture: uploadedData.url };
             setUser(updatedUser);
+            alert("Profile picture updated Successfully!")
             updateUser(updatedUser); // Send the updated user to the server
           } else {
             alert("Failed to upload profile picture.");
