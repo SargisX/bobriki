@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUser, getUserByUsername } from "../../components/users_comp/users.api";
 // import { useNotifications } from "../../components/Notification/useNotification";
 import { useToastify } from "../../hooks/Notification/useToastify";
+import { UserAdd } from "../../components/users_comp/types";
 
 const SignUp: React.FC = () => {
     const [username, setUsername] = useState("");
@@ -49,10 +50,13 @@ const SignUp: React.FC = () => {
                     username === "PrezidentBobrlanda" && password === "B0brN3ws!M0d3r@t0r$2024" ? "bobrnews_Moderator" :
                         "user"
 
-            const newUser = {
+            const newUser:UserAdd = {
                 username,
                 password,
-                role
+                role,
+                nickname:"",
+                profilePicture: "",
+                bio: "",
             };
             await createUser(newUser);
 
