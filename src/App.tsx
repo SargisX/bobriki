@@ -91,7 +91,7 @@ function App() {
                 <Route path="/free-sites/:siteid" element={isLoggedIn ? <FreeSitePage /> : <Navigate to="/signin" />} />
                 <Route path="/users" element={isLoggedIn ? <UserList /> : <Navigate to="/signin" />} />
                 <Route path="/bobrnews" element={isLoggedIn ? <BobrNews /> : <Navigate to="/signin" />} />
-                <Route path="/profile" element={isLoggedIn ? <ProfilePage /> : <Navigate to="/signin" />} />
+                <Route path="/profile" element={isLoggedIn ? <ProfilePage user={user} setUser={setUser} /> : <Navigate to="/signin" />} />
                 <Route path="/profile/:id" element={isLoggedIn ? <UserProfile /> : <Navigate to="/signin" />} />
                 <Route path="/tickets" element={isLoggedIn ? <Tickets /> : <Navigate to="/signin" />} />
               </>

@@ -4,9 +4,11 @@ import { getUserById, updateUser, uploadProfilePicture } from "../users_comp/use
 import { getCurrentSession } from "../users_comp/auth/authUtils";
 import { UpdateProfile, User } from "../users_comp/types";
 import { EditProfile } from "./editProfile";
-
-export const Profile = () => {
-  const [user, setUser] = useState<User | null>(null);
+interface ProfileProps {
+  user: User | null;
+  setUser: (user: User | null) => void;
+}
+export const Profile = ({user,setUser}:ProfileProps) => {
   const [isUploading, setIsUploading] = useState(false); // Track uploading state
   const fileInputRef = useRef<HTMLInputElement>(null); // Ref for the file input
 
@@ -44,34 +46,31 @@ export const Profile = () => {
   };
 
   const handleProfilePictureChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files[0];
-      if (file) {
-        setIsUploading(true); // Set uploading state
-        const formData = new FormData(); // Create a FormData instance
-        formData.append("file", file); // Append the file to FormData
-  
-        try {
-          // Send the new profile picture to the server
-          const uploadedData = await uploadProfilePicture(formData); // Pass FormData
-          if (uploadedData?.url) {
-            // Update the user state with the new profile picture URL
-            const updatedUser: User = { ...user, profilePicture: uploadedData.url };
-            setUser(updatedUser);
-            alert("Profile picture updated Successfully!")
-            updateUser(updatedUser); // Send the updated user to the server
-          } else {
-            alert("Failed to upload profile picture.");
-          }
-        } catch (error) {
-          console.error("Error uploading profile picture:", error);
-          alert("Error uploading profile picture. Please try again.");
-        } finally {
-          setIsUploading(false); // Reset uploading state
-        }
-      }
+  if (!e.target.files) return;
+  const file = e.target.files[0];
+  if (!file) return;
+
+  setIsUploading(true);
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const uploadedData = await uploadProfilePicture(formData);
+    if (uploadedData?.url) {
+      const updatedUser = { ...user, profilePicture: uploadedData.url };
+      setUser(updatedUser);
+      await updateUser(updatedUser);
+      alert("Profile picture updated successfully!");
+    } else {
+      alert("Failed to upload profile picture.");
     }
-  };
+  } catch (error) {
+    console.error("Error uploading profile picture:", error);
+    alert("Error uploading profile picture. Please try again.");
+  } finally {
+    setIsUploading(false);
+  }
+};
   
 
   return (
