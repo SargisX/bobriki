@@ -2,7 +2,7 @@
 import axios from "axios";
 import { AddTicket, Ticket } from "./types";
 
-const URL = 'https://raw.githubusercontent.com/SargisX/bobriki/main/DATA/tickets.json'; // Make sure to set your URL here
+const URL = 'https://bobriki-backend-dfk1.vercel.app/api/tickets'; // Make sure to set your URL here
 
 export const getTickets = async (): Promise<Ticket[]> => {
     const response = await axios.get(URL);
