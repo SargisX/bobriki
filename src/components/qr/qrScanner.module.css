@@ -60,3 +60,19 @@
 .saveButton:hover {
     background-color: #007c00;
 }
+
+.fileButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #d5d817;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.fileButton:hover {
+    background-color: #c2c51b;
+}
