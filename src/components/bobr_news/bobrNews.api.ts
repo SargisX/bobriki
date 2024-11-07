@@ -3,7 +3,7 @@ import { IBobrNews } from "./types"
 
 const upload_preset = import.meta.env.VITE_UPLOAD_PRESET
 const IMG_URL = `https://api.cloudinary.com/v1_1/sargisx/image/upload?upload_preset=${upload_preset}`
-const News_URL = `https://6713e4de690bf212c7601eb2.mockapi.io/bobr_V1/bobrnews`
+const News_URL = `https://bobriki-backend.onrender.com/api/news`
 
 /* Image */
 export const uploadImage = async (image: FormData): Promise<any> => {
@@ -32,7 +32,7 @@ export const getBobrNews = async (): Promise<IBobrNews[]> => {
 }
 
 export const createBobrNews = async (post: any): Promise<IBobrNews> => {
-    const response = await axios.post(News_URL, post)
+    const response = await axios.post(News_URL+"/add", post)
     return response.data
 }
 
