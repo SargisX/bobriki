@@ -2,7 +2,7 @@
 import axios from "axios";
 import { AddTicket, Ticket } from "./types";
 
-const URL = 'https://tidylunch-eu.backendless.app/api/data/tickets'; // Make sure to set your URL here
+const URL = 'https://raw.githubusercontent.com/SargisX/bobriki/main/DATA/tickets.json'; // Make sure to set your URL here
 
 export const getTickets = async (): Promise<Ticket[]> => {
     const response = await axios.get(URL);
@@ -22,4 +22,9 @@ export const deleteTicket = async (id: string): Promise<Ticket> => {
         console.error("Error deleting ticket:", error);
         throw error; // Rethrow the error to be handled in the calling function
     }
+};
+
+export const updateTicket = async (id: string, updatedTicket: Partial<Ticket>): Promise<Ticket> => {
+    const response = await axios.put(`${URL}/${id}`, updatedTicket);
+    return response.data;
 };

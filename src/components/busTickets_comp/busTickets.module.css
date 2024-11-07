@@ -62,7 +62,7 @@
     display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .button {
         width: 150px;
     }

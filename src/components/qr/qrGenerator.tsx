@@ -8,7 +8,7 @@ interface QRGeneratorProps {
 }
 
 export const QRGenerator: React.FC<QRGeneratorProps> = ({ value, isFullScreen }) => { // Destructure the value prop
-    const size = isFullScreen ? 350 : 256;
+    const size = isFullScreen ? 280 : 256;
     return (
         <div className={styles.qrGeneratorContainer}>
             {value && ( // Only render if value is provided

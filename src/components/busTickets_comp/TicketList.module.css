@@ -1,42 +1,118 @@
-/* TicketList.module.css */
-
-/* General button styles */
 .deleteButton {
     width: calc(100% - 40px);
-    background-color: #ff4d4d; /* Light red background */
-    color: white; /* White text color */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 8px 12px; /* Padding for button size */
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
     margin: 0 20px;
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
-    font-size: 14px; /* Font size */
-    right: 0; /* Align to the right */
-    top: 0; /* Align to the top */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    right: 0;
+    top: 0;
 }
 
-/* Hover effect */
 .deleteButton:hover {
-    background-color: #ff1a1a; /* Darker red on hover */
+    background-color: #ff1a1a;
 }
 
-/* Fullscreen QR styles */
 .fullScreenQRContainer {
-    position: fixed; /* Fixed positioning for fullscreen */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: white; /* White background */
-    display: flex; /* Flexbox to center content */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    z-index: 9999; /* Ensure it appears above other elements */
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
 }
 
-/* Optional focus styles for buttons */
 .deleteButton:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.5); /* Custom focus outline */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.5);
+}
+
+.usedBtn {
+    background-color: #ffaf38;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 25px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    right: 0;
+    top: 0;
+    margin-bottom: 10px;
+}
+
+.usedBtn:hover {
+    background-color: #e98c00;
+}
+
+.listHeader {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.qrList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.qrBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.329);
+    padding: 15px;
+    border-radius: .3rem;
+}
+
+.qrNumber{
+    justify-content: center;
+    align-items: center;
+}
+
+.qrNumber p{
+    font-size: 1rem;
+}
+
+
+.qrNumber strong {
+    font-size: 1.2rem;
+}
+
+.noTickets{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    color: #999;
+}
+
+@media (min-width: 769px) {
+    .usedBtn {
+        width: 150px;
+    }
+
+    .qrList{
+        justify-content: left;
+    }
+
+    .qrBox {
+        width: 350px;
+        height: 480px;
+        align-items: center;
+    }
 }
