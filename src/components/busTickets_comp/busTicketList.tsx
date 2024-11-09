@@ -16,17 +16,9 @@ export const TicketList: React.FC = () => {
         const fetchTickets = async () => {
             try {
                 const fetchedTickets = await getTickets();
-                console.log("Fetched Tickets:", fetchedTickets); // Add this line
-
                 const currentSession = getCurrentSession();
-                console.log("Current Session:", currentSession); // Add this line
-
                 const userId = currentSession ? currentSession.userId : null;
-
-
                 const userTickets = fetchedTickets.filter(ticket => ticket.userId === userId);
-                console.log("User Tickets:", userTickets); // Add this line
-
                 const activeTickets = userTickets.filter(ticket => !ticket.isUsed);
                 const archivedTickets = userTickets.filter(ticket => ticket.isUsed);
 
