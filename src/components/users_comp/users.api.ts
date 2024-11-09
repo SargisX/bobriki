@@ -3,7 +3,9 @@ import type { User, UserAdd } from "./types"
 
 const upload_preset = import.meta.env.VITE_UPLOAD_PRESET
 const IMG_URL = `https://api.cloudinary.com/v1_1/sargisx/image/upload?upload_preset=${upload_preset}`
-const API_URL = "https://bobriki-backend.onrender.com/api/users"
+// My server  
+// const API_URL = "https://bobriki-backend.onrender.com/api/users"
+const API_URL = "https://6713e4de690bf212c7601eb2.mockapi.io/bobr_V1/users"
 
 /* Image */
 export const uploadProfilePicture = async (image: FormData): Promise<any> => {
@@ -20,7 +22,7 @@ export const uploadProfilePicture = async (image: FormData): Promise<any> => {
 
 /* User */
 export const createUser = async (user: UserAdd) => {
-    const response = await axios.post(API_URL+"/add", user)
+    const response = await axios.post(API_URL, user)
     return response.data
 }
 

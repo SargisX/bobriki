@@ -7,7 +7,7 @@ export const saveLoginSession = (user: User) => {
 
     const sessionData: SignUpUser = {
         timestamp: new Date().getTime(),
-        userId: id,
+        userId: `${id}`,
         role,
     }
 

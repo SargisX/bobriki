@@ -1,7 +1,9 @@
 import axios from "axios";
 import { AddTicket, Ticket } from "./types";
 
-const URL = 'https://bobriki-backend.onrender.com/api/tickets'; // Ensure this URL is correct
+// My server 
+// const URL = 'https://bobriki-backend.onrender.com/api/tickets'; // Ensure this URL is correct
+const URL = 'https://tidylunch-eu.backendless.app/api/data/tickets'; // Ensure this URL is correct
 
 export const getTickets = async (): Promise<Ticket[]> => {
     const response = await axios.get(URL);
@@ -10,7 +12,7 @@ export const getTickets = async (): Promise<Ticket[]> => {
 
 export const addTicket = async (ticket: AddTicket): Promise<Ticket> => {
     try {
-        const response = await axios.post(URL+"/add", ticket, {
+        const response = await axios.post(URL, ticket, {
             headers: {
                 'Content-Type': 'application/json', // Ensure Content-Type is set to JSON
             },
