@@ -28,8 +28,6 @@ export const TicketList: React.FC = () => {
                 console.error("Failed to fetch tickets:", error);
             }
         };
-        console.log(tickets);
-
 
         fetchTickets();
     }, []);
