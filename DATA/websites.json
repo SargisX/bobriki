@@ -193,6 +193,33 @@
             ],
             "download":0,
             "rate":0
+        },
+        {
+            "id": "108",
+            "name": "Html homework 2",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/8.png",
+            "description": "HTML homework for all my users",
+            "author": "SargisX",
+            "technologies": [
+                "HTML",
+                "CSS"
+            ],
+            "category": "Homeworks",
+            "status": "Active",
+            "platform": [
+                "desktop"
+            ],
+            "dateAdded": "2024-11-10",
+            "tags": [
+                "e-commerce",
+                "online store",
+                "shopping",
+                "products",
+                "sales",
+                "retail"
+            ],
+            "download":0,
+            "rate":0
         }
     ]
 }
