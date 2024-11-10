@@ -166,6 +166,33 @@
             ],
             "download":0,
             "rate":0
+        },
+        {
+            "id": "107",
+            "name": "Html homework 1",
+            "image": "https://raw.githubusercontent.com/SargisX/bobriki/main/public/images/websites/7.png",
+            "description": "HTML homework for all my users",
+            "author": "Artyuyr",
+            "technologies": [
+                "HTML",
+                "CSS"
+            ],
+            "category": "Homeworks",
+            "status": "Active",
+            "platform": [
+                "desktop"
+            ],
+            "dateAdded": "2024-11-10",
+            "tags": [
+                "e-commerce",
+                "online store",
+                "shopping",
+                "products",
+                "sales",
+                "retail"
+            ],
+            "download":0,
+            "rate":0
         }
     ]
 }
