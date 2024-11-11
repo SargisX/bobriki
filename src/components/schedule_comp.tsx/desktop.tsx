@@ -129,12 +129,7 @@ export const Desktop = () => {
                             {/* Lesson 4 */}
                             <tr>
                                 <td data-label="Time"><b>1:10 - 2:20</b></td>
-                                <td data-label="Monday">
-                                    <div className="class-details">
-                                        <span>Excel</span>
-                                        <span>Room <b>209</b></span>
-                                    </div>
-                                </td>
+                                <td data-label="Monday"></td>
                                 <td data-label="Tuesday"></td>
                                 <td data-label="Wednesday"></td>
                                 <td data-label="Thursday"></td>
