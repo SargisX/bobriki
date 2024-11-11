@@ -24,10 +24,6 @@ export const Mobile = () => {
                   <span><b>11:50 - 1:00</b></span>
                   <span>Հանր - Room <b>003</b></span>
                 </div>
-                <div className="schedule-item">
-                  <span><b>1:10 - 2:20</b></span>
-                  <span>Excel - Room <b>209</b></span>
-                </div>
               </div>
             </div>
             <div className="schedule-day">
