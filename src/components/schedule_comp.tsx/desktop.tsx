@@ -26,32 +26,32 @@ export const Desktop = () => {
                                 <td data-label="Time"><b>9:00 - 10:10</b></td>
                                 <td data-label="Monday">
                                     <div className="class-details">
-                                        <span>Python</span>
-                                        <span>Room <b>206</b></span>
+                                        <span>Management</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Tuesday">
                                     <div className="class-details">
-                                        <span>Ինտեգրալ</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>Security</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Wednesday">
                                     <div className="class-details">
-                                        <span>Դինամիկ WEB</span>
-                                        <span>Room <b>202</b></span>
+                                        <span>Ձեներեցություն</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Thursday">
                                     <div className="class-details">
-                                        <span>Figma</span>
-                                        <span>Room <b>201</b></span>
+                                        <span>JavaScript</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Friday">
                                     <div className="class-details">
-                                        <span>SQL</span>
-                                        <span>Room <b>203</b></span>
+                                        <span>Interface</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                             </tr>
@@ -61,32 +61,32 @@ export const Desktop = () => {
                                 <td data-label="Time"><b>10:20 - 11:30</b></td>
                                 <td data-label="Monday">
                                     <div className="class-details">
-                                        <span>Ստատիկ WEB</span>
-                                        <span>Room <b>207</b></span>
+                                        <span>Interface</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Tuesday">
                                     <div className="class-details">
-                                        <span>Հանր</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>NonRelative DB</span>
+                                        <span>Room <b></b></span>
                                     </div>
                                 </td>
                                 <td data-label="Wednesday">
                                     <div className="class-details">
-                                        <span>Python</span>
-                                        <span>Room <b>206</b></span>
+                                        <span>JavaScript</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Thursday">
                                     <div className="class-details">
-                                        <span>Excel</span>
-                                        <span>Room <b>209</b></span>
+                                        <span>Դիֆերենցիալ</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Friday">
                                     <div className="class-details">
                                         <span>Դիսկրետ</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                             </tr>
@@ -96,32 +96,32 @@ export const Desktop = () => {
                                 <td data-label="Time"><b>11:50 - 1:00</b></td>
                                 <td data-label="Monday">
                                     <div className="class-details">
-                                        <span>Հանր</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>Networks</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Tuesday">
                                     <div className="class-details">
-                                        <span>SQL</span>
-                                        <span>Room <b>203</b></span>
+                                        <span>NMA</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Wednesday">
                                     <div className="class-details">
-                                        <span>Իրավունք</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>Probability</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Thursday">
                                     <div className="class-details">
-                                        <span>Դինամիկ WEB</span>
-                                        <span>Room <b>202</b></span>
+                                        <span>Probability</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                                 <td data-label="Friday">
                                     <div className="class-details">
-                                        <span>Ինտեգրալ</span>
-                                        <span>Room <b>003</b></span>
+                                        <span>Networks</span>
+                                        <span>Room <b>X</b></span>
                                     </div>
                                 </td>
                             </tr>
@@ -130,15 +130,14 @@ export const Desktop = () => {
                             <tr>
                                 <td data-label="Time"><b>1:10 - 2:20</b></td>
                                 <td data-label="Monday"></td>
-                                <td data-label="Tuesday"></td>
+                                <td data-label="Tuesday">
+                                    <div className="class-details">
+                                        <span>Ձեներեցություն</span>
+                                        <span>Room <b>X</b></span>
+                                    </div></td>
                                 <td data-label="Wednesday"></td>
                                 <td data-label="Thursday"></td>
-                                <td data-label="Friday">
-                                    <div className="class-details">
-                                        <span>Ստատիկ WEB</span>
-                                        <span>Room <b>206</b></span>
-                                    </div>
-                                </td>
+                                <td data-label="Friday"></td>
                             </tr>
                         </tbody>
                     </table>
