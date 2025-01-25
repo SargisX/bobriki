@@ -14,15 +14,15 @@ export const Mobile = () => {
               <div className="schedule-items">
                 <div className="schedule-item">
                   <span><b>9:00 - 10:10</b></span>
-                  <span>Python - Room <b>206</b></span>
+                  <span>Management - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>10:20 - 11:30</b></span>
-                  <span>Ստատիկ WEB - Room <b>207</b></span>
+                  <span>Interface - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>11:50 - 1:00</b></span>
-                  <span>Հանր - Room <b>003</b></span>
+                  <span>Network - Room <b>X</b></span>
                 </div>
               </div>
             </div>
@@ -31,15 +31,19 @@ export const Mobile = () => {
               <div className="schedule-items">
                 <div className="schedule-item">
                   <span><b>9:00 - 10:10</b></span>
-                  <span>Ինտեգրալ - Room <b>003</b></span>
+                  <span>Security - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>10:20 - 11:30</b></span>
-                  <span>Հանր - Room <b>003</b></span>
+                  <span>NonRelative DB - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>11:50 - 1:00</b></span>
-                  <span>SQL - Room <b>203</b></span>
+                  <span>NMA - Room <b>X</b></span>
+                </div>
+                <div className="schedule-item">
+                  <span><b>1:10 - 2:20</b></span>
+                  <span>Ձեներեցություն - Room <b>X</b></span>
                 </div>
               </div>
             </div>
@@ -48,15 +52,15 @@ export const Mobile = () => {
               <div className="schedule-items">
                 <div className="schedule-item">
                   <span><b>9:00 - 10:10</b></span>
-                  <span>Դինամիկ WEB - Room <b>202</b></span>
+                  <span>Ձեներեցություն - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>10:20 - 11:30</b></span>
-                  <span>Python - Room <b>206</b></span>
+                  <span>JavaScript - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>11:50 - 1:00</b></span>
-                  <span>Իրավունք - Room <b>003</b></span>
+                  <span>Probability - Room <b>X</b></span>
                 </div>
               </div>
             </div>
@@ -65,15 +69,15 @@ export const Mobile = () => {
               <div className="schedule-items">
                 <div className="schedule-item">
                   <span><b>9:00 - 10:10</b></span>
-                  <span>Figma - Room <b>201</b></span>
+                  <span>JavaScript - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>10:20 - 11:30</b></span>
-                  <span>Excel - Room <b>209</b></span>
+                  <span>Դիֆերենցիալ - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>11:50 - 1:00</b></span>
-                  <span>Դինամիկ WEB - Room <b>202</b></span>
+                  <span>Probability - Room <b>X</b></span>
                 </div>
               </div>
             </div>
@@ -82,19 +86,15 @@ export const Mobile = () => {
               <div className="schedule-items">
                 <div className="schedule-item">
                   <span><b>9:00 - 10:10</b></span>
-                  <span>SQL - Room <b>203</b></span>
+                  <span>Interface - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>10:20 - 11:30</b></span>
-                  <span>Դիսկրետ - Room <b>003</b></span>
+                  <span>Դիսկրետ - Room <b>X</b></span>
                 </div>
                 <div className="schedule-item">
                   <span><b>11:50 - 1:00</b></span>
-                  <span>Ինտեգրալ - Room <b>003</b></span>
-                </div>
-                <div className="schedule-item">
-                  <span><b>1:10 - 2:20</b></span>
-                  <span>Ստատիկ WEB - Room <b>206</b></span>
+                  <span>Network - Room <b>X</b></span>
                 </div>
               </div>
             </div>
